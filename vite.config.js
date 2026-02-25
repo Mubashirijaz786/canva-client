@@ -22,7 +22,7 @@ export default defineConfig({
           'vendor-ui': ['lucide-react'],
           
           // Admin features - separate chunk
-          'admin': ['./src/admin/layouts/AdminLayout', './src/admin/pages/Dashboard', './src/admin/pages/ManageBlog', './src/admin/pages/ManageReviews'],
+          'admin': ['./src/admin/layouts/AdminLayout', './src/admin/pages/Dashboard', './src/admin/pages/ManageBlogs', './src/admin/pages/ManageReviews'],
           
           // Service pages - separate chunk
           'services': ['./src/components/services/Ecommerce', './src/components/services/SEO', './src/components/services/ContentWriting', './src/components/services/GraphicDesign', './src/components/services/SocialMedia', './src/components/services/MobileApp', './src/components/services/WebDevelopment', './src/components/services/CustomSoftware'],

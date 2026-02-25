@@ -13,7 +13,7 @@ const ManageBlogs = () => {
     const [mainImage, setMainImage] = useState(null);
     const [sections, setSections] = useState([{ heading: '', text: '', sectionImage: null, preview: null }]);
     
-    // ✅ Updated formData with SEO fields
+  
     const [formData, setFormData] = useState({
         title: '', 
         excerpt: '', 
