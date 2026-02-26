@@ -69,7 +69,7 @@ const Navbar = () => {
             {/* Mobile Menu Dropdown */}
             {isOpen && (
                 <div className="absolute top-full left-0 w-full mt-3 p-5 border border-white/10 rounded-2xl bg-[#020617]/95 backdrop-blur-2xl lg:hidden flex flex-col gap-4 z-[60] shadow-2xl animate-in fade-in slide-in-from-top-4">
-                    {['Home', 'Services', 'Portfolio', 'Blogs', 'About', 'Contacts'].map((item) => (
+                    {['Home', 'Services', 'Portfolio', 'Blog', 'About', 'Contact'].map((item) => (
                         <Link 
                             key={item}
                             to={item === 'Home' ? '/' : `/${item}`} 
