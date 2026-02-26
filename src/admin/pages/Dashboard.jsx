@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { MessageSquare, FileText, UserPlus, ArrowUpRight, Loader2, Briefcase, CheckCircle2, BellRing } from 'lucide-react';
+import { MessageSquare, FileText, UserPlus, ArrowUpRight, Loader2, Briefcase, CheckCircle2, BellRing, Paperclip } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAdminAuth } from '../context/AdminAuthContext';
 import { axiosPrivate } from '../../api/axios';
@@ -37,19 +37,16 @@ const Dashboard = () => {
         );
     }
 
-    // Filter inquiries (Sirf unread)
     const pendingInquiries = data?.recentInquiries?.filter(msg => msg.status === 'unread') || [];
 
-    // Dashboard Stats Logic
     const stats = [
-        // ✅ Stats mein bhi inquiries sirf Superadmin ko dikhayenge, warna "Hidden" card ya count 0 dikhega
         { 
             label: "New Inquiries", 
             value: adminAuth?.role === 'superadmin' ? (data?.stats?.inquiries || "0") : "N/A", 
             change: "Secure", 
             icon: <MessageSquare size={20} />, 
             path: "/admin/messages",
-            hidden: adminAuth?.role !== 'superadmin' // Card hide karne ke liye
+            hidden: adminAuth?.role !== 'superadmin' 
         },
         { label: "Team Members", value: data?.stats?.team || "0", change: "Active", icon: <UserPlus size={20} />, path: "/admin/team" },
         { label: "Blog Posts", value: data?.stats?.blogs || "0", change: "Live", icon: <FileText size={20} />, path: "/admin/blogs" },
@@ -59,7 +56,6 @@ const Dashboard = () => {
     return (
         <div className="space-y-8 animate-in fade-in duration-500 pb-10 font-['Manrope']">
             
-            {/* 1. TOP NOTIFICATION BOX (✅ ONLY FOR SUPERADMIN) */}
             {adminAuth?.role === 'superadmin' && pendingInquiries.length > 0 && (
                 <div className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 p-5 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-[0_0_30px_rgba(37,99,235,0.2)] border border-white/10 relative overflow-hidden group">
                     <div className="absolute inset-0 bg-white/5 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
@@ -69,7 +65,7 @@ const Dashboard = () => {
                         </div>
                         <div>
                             <h4 className="text-white font-black text-sm uppercase tracking-widest italic mb-1">Superadmin Alert!</h4>
-                            <p className="text-blue-100 text-xs font-medium">Bhai, {pendingInquiries.length} leads pending hain. Review kar lein.</p>
+                            <p className="text-blue-100 text-xs font-medium">{pendingInquiries.length} new inquiries are pending review.</p>
                         </div>
                     </div>
                     <Link to="/admin/messages" className="bg-white text-blue-600 px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-50 transition-all shadow-lg active:scale-95 relative z-10">
@@ -78,7 +74,6 @@ const Dashboard = () => {
                 </div>
             )}
 
-            {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-black italic tracking-tight text-white uppercase mb-1">Dashboard</h1>
@@ -95,7 +90,6 @@ const Dashboard = () => {
                 )}
             </div>
 
-            {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.filter(s => !s.hidden).map((stat, idx) => (
                     <div 
@@ -117,7 +111,6 @@ const Dashboard = () => {
                 ))}
             </div>
 
-            {/* ✅ ACTION LIST (ONLY FOR SUPERADMIN) */}
             {adminAuth?.role === 'superadmin' ? (
                 <div className="w-full p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-sm shadow-xl relative overflow-hidden">
                     <div className="flex justify-between items-center mb-8 border-b border-white/5 pb-6">
@@ -146,9 +139,18 @@ const Dashboard = () => {
                                             <div className="flex items-center gap-2 mb-1">
                                                 <h4 className="font-bold text-sm text-white">{msg.name}</h4>
                                                 <span className="text-[7px] font-black bg-blue-500 text-white px-1.5 py-0.5 rounded-sm uppercase tracking-tighter">ACTION</span>
+                                                
+                                                {/* ✅ ATTACHMENT INDICATOR */}
+                                                {msg.attachmentUrl && (
+                                                    <div className="flex items-center gap-1 bg-green-500/20 text-green-500 px-2 py-0.5 rounded-full border border-green-500/30">
+                                                        <Paperclip size={10} />
+                                                        <span className="text-[8px] font-black uppercase tracking-tighter italic">Attachment</span>
+                                                    </div>
+                                                )}
                                             </div>
-                                            <p className="text-xs text-gray-400 truncate max-w-[200px] md:max-w-md italic">
-                                                "{msg.subject || "No subject provided"}"
+                                            {/* ✅ SHOW SERVICE TYPE */}
+                                            <p className="text-gray-500 text-[10px] font-bold italic uppercase tracking-widest">
+                                                {msg.service || "General Inquiry"}
                                             </p>
                                         </div>
                                     </div>
@@ -170,7 +172,6 @@ const Dashboard = () => {
                     </div>
                 </div>
             ) : (
-                
                 <div className="w-full p-12 rounded-[2.5rem] bg-white/[0.02] border border-dashed border-white/10 text-center">
                      <p className="text-gray-600 italic font-medium">Inquiries and User Management are restricted to Superadmins only.</p>
                 </div>
