@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { axiosPrivate } from '../../api/axios';
-import { Loader2, Mail, Phone, Calendar, ChevronRight, X, Trash2, Inbox, CheckCircle2, CheckCircle, RotateCcw } from 'lucide-react';
+import { 
+    Loader2, Mail, Phone, Calendar, ChevronRight, X, 
+    Trash2, Inbox, CheckCircle2, CheckCircle, RotateCcw, 
+    Paperclip, ExternalLink // ✅ New Icons
+} from 'lucide-react';
 
 const Inquiries = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedMsg, setSelectedMsg] = useState(null);
 
-    // 1. FETCH ALL MESSAGES
     const fetchMessages = async () => {
         try {
             const res = await axiosPrivate.get('/inquiries');
@@ -23,12 +26,9 @@ const Inquiries = () => {
         fetchMessages();
     }, []);
 
-    // ✅ 2. DYNAMIC STATUS UPDATE (Read / Resolved)
     const updateInquiryStatus = async (id, newStatus) => {
         try {
             await axiosPrivate.patch(`/inquiries/${id}/read`, { status: newStatus });
-            
-            // UI Sync
             setMessages(prev => prev.map(m => m._id === id ? { ...m, status: newStatus } : m));
             if (selectedMsg?._id === id) setSelectedMsg(prev => ({ ...prev, status: newStatus }));
         } catch (err) {
@@ -43,11 +43,9 @@ const Inquiries = () => {
         }
     };
 
-    // 3. DELETE LOGIC
     const handleDelete = async (id, e) => {
         e.stopPropagation();
-       
-
+        if(!window.confirm("Are you sure you want to delete this inquiry?")) return;
         try {
             await axiosPrivate.delete(`/inquiries/${id}`);
             setMessages(messages.filter(msg => msg._id !== id));
@@ -66,7 +64,6 @@ const Inquiries = () => {
 
     return (
         <div className="space-y-8 pb-20 font-['Manrope'] selection:bg-blue-500/30">
-            {/* Page Title */}
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-blue-600/10 rounded-2xl text-blue-500">
                     <Inbox size={32} />
@@ -77,7 +74,6 @@ const Inquiries = () => {
                 </div>
             </div>
 
-            {/* List Section */}
             <div className="grid grid-cols-1 gap-4">
                 {messages.length > 0 ? messages.map((msg) => (
                     <div 
@@ -91,7 +87,6 @@ const Inquiries = () => {
                             : "bg-white/[0.02] border-white/5 opacity-60 hover:opacity-100"
                         }`}
                     >
-                        {/* Indicative Bar */}
                         {msg.status === 'unread' && <div className="absolute left-0 top-0 h-full w-1.5 bg-blue-600"></div>}
                         {msg.status === 'resolved' && <div className="absolute left-0 top-0 h-full w-1.5 bg-green-500"></div>}
 
@@ -110,8 +105,9 @@ const Inquiries = () => {
                                     {msg.status === 'unread' && (
                                         <span className="bg-blue-500 text-white text-[8px] px-2 py-0.5 rounded-full font-black uppercase tracking-widest animate-pulse">New Lead</span>
                                     )}
-                                    {msg.status === 'resolved' && (
-                                        <span className="bg-green-500/20 text-green-500 text-[8px] px-2 py-0.5 rounded-full font-black uppercase">Done</span>
+                                    {/* ✅ LIST VIEW ATTACHMENT INDICATOR */}
+                                    {msg.attachmentUrl && (
+                                        <Paperclip size={14} className="text-green-500" />
                                     )}
                                 </div>
                                 <p className="text-gray-500 text-xs font-medium">{msg.email}</p>
@@ -127,7 +123,6 @@ const Inquiries = () => {
                             </div>
                             
                             <div className="flex items-center gap-2">
-                                {/* ✅ Quick Resolve Toggle */}
                                 <button 
                                     onClick={(e) => { e.stopPropagation(); updateInquiryStatus(msg._id, msg.status === 'resolved' ? 'read' : 'resolved'); }}
                                     className={`p-3 rounded-xl transition-all ${msg.status === 'resolved' ? "bg-yellow-500/10 text-yellow-500" : "bg-green-500/10 text-green-500"}`}
@@ -146,69 +141,92 @@ const Inquiries = () => {
                 )) : (
                     <div className="text-center py-24 bg-white/[0.02] rounded-[3.5rem] border border-dashed border-white/10">
                         <Inbox className="mx-auto text-gray-800 mb-4" size={64} />
-                        <p className="text-gray-600 italic font-medium">Bhai, koi inquiry nahi mili.</p>
+                        <p className="text-gray-600 italic font-medium">No inquiries found.</p>
                     </div>
                 )}
             </div>
 
-            {/* --- Modal Detail Section (ALL FIELDS RESTORED) --- */}
+            {/* --- Modal Detail Section --- */}
             {selectedMsg && (
                 <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 backdrop-blur-2xl bg-black/80">
-                    <div className="bg-[#0f172a] border border-white/10 w-full max-w-2xl rounded-[3rem] p-10 relative animate-in zoom-in duration-300 shadow-2xl overflow-hidden">
+                    <div className="bg-[#0f172a] border border-white/10 w-full max-w-2xl rounded-[3rem] p-10 relative animate-in zoom-in duration-300 shadow-2xl overflow-y-auto max-h-[90vh]">
                         <div className="absolute -top-20 -right-20 p-40 bg-blue-600/10 blur-[100px] -z-10 rounded-full"></div>
                         
                         <div className="absolute top-8 right-8 flex items-center gap-3">
-                            {/* ✅ Modal Status Toggle */}
                             <button 
                                 onClick={() => updateInquiryStatus(selectedMsg._id, selectedMsg.status === 'resolved' ? 'read' : 'resolved')}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${selectedMsg.status === 'resolved' ? "bg-yellow-500/10 text-yellow-500" : "bg-green-500 text-white shadow-lg shadow-green-900/20"}`}
                             >
-                                {selectedMsg.status === 'resolved' ? <><RotateCcw size={14}/> Re-open Lead</> : <><CheckCircle size={14}/> Mark Resolved</>}
+                                {selectedMsg.status === 'resolved' ? <><RotateCcw size={14}/> Re-open</> : <><CheckCircle size={14}/> Resolve</>}
                             </button>
-                            <button onClick={() => setSelectedMsg(null)} className="p-2 text-gray-500 hover:text-white transition-colors bg-white/5 rounded-xl hover:bg-white/10">
+                            <button onClick={() => setSelectedMsg(null)} className="p-2 text-gray-500 hover:text-white transition-colors bg-white/5 rounded-xl">
                                 <X size={28} />
                             </button>
                         </div>
 
-                        <div className="flex items-center gap-6 mb-10 border-b border-white/5 pb-10">
-                            <div className={`w-24 h-24 rounded-[2.5rem] flex items-center justify-center text-4xl font-black text-white shadow-2xl transition-colors duration-500 ${selectedMsg.status === 'resolved' ? 'bg-green-600 shadow-green-900/20' : 'bg-blue-600 shadow-blue-900/20'}`}>
+                        <div className="flex items-center gap-6 mb-10 border-b border-white/5 pb-10 mt-6 md:mt-0">
+                            <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center text-3xl font-black text-white shadow-2xl transition-colors duration-500 ${selectedMsg.status === 'resolved' ? 'bg-green-600' : 'bg-blue-600'}`}>
                                 {selectedMsg.name.charAt(0).toUpperCase()}
                             </div>
                             <div>
-                                <h2 className="text-4xl font-black text-white tracking-tighter italic uppercase">{selectedMsg.name}</h2>
-                                <p className="text-blue-400 font-black text-xs uppercase tracking-[0.3em] mt-2 flex items-center gap-2">
+                                <h2 className="text-3xl font-black text-white tracking-tighter italic uppercase">{selectedMsg.name}</h2>
+                                <p className="text-blue-400 font-black text-[10px] uppercase tracking-[0.3em] mt-2 flex items-center gap-2">
                                     <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                     {selectedMsg.service || "General Inquiry"}
                                 </p>
                             </div>
                         </div>
 
-                        {/* ✅ RESTORED ALL FIELDS (Email, Phone, Date, Budget) */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
                                 <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2"><Mail size={12} className="text-blue-500"/> Client Email</p>
-                                <p className="text-white font-bold text-sm">{selectedMsg.email}</p>
+                                <p className="text-white font-bold text-sm truncate">{selectedMsg.email}</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                                <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2"><Phone size={12} className="text-green-500"/> Phone Number</p>
-                                <p className="text-white font-bold text-sm">{selectedMsg.phone || "No phone provided"}</p>
+                                <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2"><Phone size={12} className="text-green-500"/> Phone</p>
+                                <p className="text-white font-bold text-sm">{selectedMsg.phone || "N/A"}</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                                <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2"><Calendar size={12} className="text-purple-500"/> Date Received</p>
-                                <p className="text-white font-bold text-sm">{new Date(selectedMsg.createdAt).toLocaleString()}</p>
+                                <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2"><Calendar size={12} className="text-purple-500"/> Date</p>
+                                <p className="text-white font-bold text-sm">{new Date(selectedMsg.createdAt).toDateString()}</p>
                             </div>
                             {selectedMsg.budget && (
                                 <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                                    <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2">💰 Project Budget</p>
+                                    <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1">💰 Budget</p>
                                     <p className="text-green-400 font-black text-lg italic">${selectedMsg.budget}</p>
                                 </div>
                             )}
                         </div>
 
-                        {/* Message Content */}
+                        {/* ✅ NEW ATTACHMENT SECTION (Restored) */}
+                        {selectedMsg.attachmentUrl && (
+                            <div className="mb-8 p-6 rounded-[2rem] bg-green-500/5 border border-green-500/20 flex items-center justify-between group/file">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500">
+                                        <Paperclip size={24} />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black text-green-500/60 uppercase tracking-widest mb-0.5">Attachment Found</p>
+                                        <h4 className="text-white font-bold text-sm truncate max-w-[200px]">
+                                            {selectedMsg.attachmentName || "Project_File.ext"}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <a 
+                                    href={selectedMsg.attachmentUrl} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-green-900/20"
+                                >
+                                    <ExternalLink size={14} />
+                                    View File
+                                </a>
+                            </div>
+                        )}
+
                         <div className="bg-white/[0.04] p-8 rounded-[2.5rem] border border-white/5 relative">
                             <div className="absolute -top-3 left-8 bg-[#020617] px-4 py-0.5 rounded-full border border-white/10 text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">Message Content</div>
-                            <p className="text-gray-200 leading-relaxed text-xl italic font-light">"{selectedMsg.message}"</p>
+                            <p className="text-gray-200 leading-relaxed text-lg font-light italic">"{selectedMsg.message}"</p>
                         </div>
                     </div>
                 </div>
