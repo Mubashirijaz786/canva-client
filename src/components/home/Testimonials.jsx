@@ -3,29 +3,30 @@ import { Star, Loader2 } from 'lucide-react';
 import { axiosPublic } from '../../api/axios';
 
 import reviewBg from '../../assets/images/review-background.webp'; 
-import reviewImg from '../../assets/images/review.webp'; 
+
 
 const Testimonials = () => {
     const [dynamicReviews, setDynamicReviews] = useState([]);
     const [featuredReview, setFeaturedReview] = useState(null);
-    const [brandingImage, setBrandingImage] = useState(""); // ✅ Global image state
+    const [brandingImage, setBrandingImage] = useState(""); 
     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchReviews = async () => {
             try {
                 const res = await axiosPublic.get('/reviews');
                 
-                // ✅ Naye backend structure se data nikalna
+              
                 const allReviews = res.data.reviews || [];
                 const globalImage = res.data.brandingImage || "";
                 
                 setBrandingImage(globalImage);
 
-                // 1. Featured review (sirf text/stars ke liye)
+                
                 const featured = allReviews.find(r => r.isFeatured) || allReviews[0];
                 
-                // 2. Baki reviews slider ke liye
+            
                 const others = allReviews.filter(r => r._id !== featured?._id);
 
                 setFeaturedReview(featured);
@@ -69,9 +70,9 @@ const Testimonials = () => {
                 {featuredReview && (
                     <div className="bg-white/5 border border-white/10 rounded-[3rem] overflow-hidden flex flex-col-reverse lg:flex-row mb-20 backdrop-blur-md shadow-2xl min-h-[500px]">
                         <div className="lg:w-2/5 relative min-h-[400px] lg:min-h-full group">
-                            {/* ✅ Ab brandingImage use hogi, featuredReview.image nahi */}
+                          
                             <img 
-                                src={brandingImage || reviewImg} 
+                                src={brandingImage} 
                                 alt="Section Branding" 
                                 className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
                             />

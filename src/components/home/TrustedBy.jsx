@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../common/PrimaryButton';
-import InfiniteMarquee from '../common/InfiniteMarquee'; // ✅ Just added this
+import InfiniteMarquee from '../common/InfiniteMarquee'; 
 import { axiosPublic } from '../../api/axios';
 import { Loader2 } from 'lucide-react';
 import loopBackground from '../../assets/images/loop-background.webp';
@@ -25,7 +25,7 @@ const TrustedBy = () => {
         fetchData();
     }, []);
 
-    // ✅ Logo elements ko memoize kiya taake list clean rahe
+   
     const logoItems = useMemo(() => {
         const list = data?.logos?.length > 0 ? data.logos : [];
         return list.map((logo, index) => (
@@ -57,7 +57,7 @@ const TrustedBy = () => {
                     </p>
                 </div>
 
-                {/* ✅ Purane div ki jagah sirf animation component lga dya hai */}
+               
                 <InfiniteMarquee 
                     items={logoItems} 
                     speedFactor={5} 
