@@ -183,7 +183,7 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
                         <div className="bg-[#0f172a] border border-white/10 rounded-[2.5rem] p-8 shadow-2xl">
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="flex items-center gap-2 text-lg font-bold italic text-white">
-                                    <AlertCircle size={20} className="text-red-400" /> Why Generic Content Fails
+                                    <AlertCircle size={20} className="text-red-400" /> Some other Q/A
                                 </h3>
                                 <button type="button" onClick={addReason} className="p-1.5 bg-red-600 rounded-lg text-white"><Plus size={16}/></button>
                             </div>

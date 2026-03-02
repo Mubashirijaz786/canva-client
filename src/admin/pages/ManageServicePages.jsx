@@ -3,7 +3,7 @@ import { axiosPrivate } from '../../api/axios';
 import { Save, X, Loader2, Settings, RotateCcw } from 'lucide-react';
 import ServiceList from '../components/services/ServiceList';
 import ServiceForm from '../components/services/ServiceForm';
-import { PAGE_DEFAULTS } from '../../data/pageDefaults'; // ✅ Master Defaults Import
+import { PAGE_DEFAULTS } from '../../data/pageDefaults';
 
 const ManageServicePages = () => {
     const services = [
@@ -29,7 +29,7 @@ const ManageServicePages = () => {
         contentItems: [], faqs: [], checklist: [], reasons: []
     });
 
-    // 1. FETCH DATA HANDLER
+
     const handleEditClick = async (pageId) => {
         setSelectedPage(pageId);
         setIsModalOpen(true);
@@ -42,7 +42,6 @@ const ManageServicePages = () => {
                     heroImage: res.data.heroImage || null
                 });
             } else {
-                // If no DB data, load from our Master Constants
                 setFormData({ ...PAGE_DEFAULTS[pageId], heroImage: null });
             }
         } catch (err) {
@@ -53,24 +52,21 @@ const ManageServicePages = () => {
         }
     };
 
-    // 2. RESET TO STATIC DATA (Universal Logic)
     const resetToDefault = () => {
         const defaults = PAGE_DEFAULTS[selectedPage];
         if (defaults && window.confirm(`⚠️ Are you sure? This will overwrite everything with the original static data for ${selectedPage}!`)) {
             setFormData({
                 ...defaults,
-                heroImage: null // Reset to local fallback image
+                heroImage: null 
             });
         }
     };
 
-    // 3. SUBMIT HANDLER
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         try {
             const data = new FormData();
-            // Append all fields to FormData
             Object.keys(formData).forEach(key => {
                 if (key === 'heroImage') {
                     if (formData[key] instanceof File) data.append(key, formData[key]);
@@ -112,8 +108,6 @@ const ManageServicePages = () => {
                     <div className="absolute inset-0 bg-[#020617]/90 backdrop-blur-md" onClick={() => !loading && setIsModalOpen(false)}></div>
                     
                     <div className="relative bg-[#0f172a] w-full max-w-7xl max-h-[95vh] rounded-[3.5rem] border border-white/10 shadow-2xl overflow-hidden flex flex-col">
-                        
-                        {/* Modal Header */}
                         <div className="p-8 border-b border-white/10 flex justify-between items-center bg-white/5">
                             <div>
                                 <h2 className="text-2xl font-black italic uppercase text-white">
@@ -123,8 +117,6 @@ const ManageServicePages = () => {
                             </div>
                             <button onClick={() => setIsModalOpen(false)} className="p-3 hover:bg-white/10 rounded-2xl transition-all text-white"><X size={24} /></button>
                         </div>
-
-                        {/* Modal Body */}
                         <div className="flex-grow overflow-y-auto p-8 custom-scrollbar bg-[#0f172a]">
                             {fetching ? (
                                 <div className="flex flex-col items-center justify-center py-32 space-y-4">
@@ -135,11 +127,9 @@ const ManageServicePages = () => {
                                 <ServiceForm formData={formData} setFormData={setFormData} onSubmit={handleSubmit} loading={loading} />
                             )}
                         </div>
-
-                        {/* Modal Footer */}
                         <div className="p-8 border-t border-white/10 bg-white/5 flex justify-between items-center">
-                            {/* Reset Button (Left Aligned) */}
                             <button 
+                            
                                 type="button"
                                 onClick={resetToDefault}
                                 className="flex items-center gap-2 px-6 py-3 font-bold text-red-400 border border-red-500/20 rounded-2xl hover:bg-red-500/10 transition-all active:scale-95"

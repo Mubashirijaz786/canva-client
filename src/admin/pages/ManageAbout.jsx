@@ -4,7 +4,7 @@ import { Save, Loader2, Plus, Trash2, BarChart, Heart } from 'lucide-react';
 import IconPicker from '../layouts/IconPicker';
 
 const ManageAbout = () => {
-    // ✅ State mein ab sirf pure content fields hain
+    
     const [config, setConfig] = useState({
         badgeText: '', heroTitle: '', heroSubtitle: '', heroDescription: '',
         founderMainTitle: '', founderName: '', founderRole: '', founderVision: '',
@@ -19,7 +19,7 @@ const ManageAbout = () => {
         axiosPublic.get('/about-page').then(res => {
             if (res.data) {
                 setConfig({
-                    ...res.data, // Backend se jo data aayega wo set ho jayega
+                    ...res.data, 
                     stats: res.data.stats || [],
                     founderSections: res.data.founderSections || [],
                     valuesList: res.data.valuesList || [],
@@ -33,7 +33,7 @@ const ManageAbout = () => {
         setLoading(true);
         const formData = new FormData();
 
-        // ✅ Sirf wahi data append hoga jo config state mein hai (No SEO fields)
+      
         Object.keys(config).forEach(key => {
             if (Array.isArray(config[key])) {
                 formData.append(key, JSON.stringify(config[key]));
@@ -99,7 +99,18 @@ const ManageAbout = () => {
                             </div>
                         ))}
                     </div>
-                    <button type="button" onClick={addStat} className="flex items-center gap-2 text-green-500 font-bold text-xs hover:underline"><Plus size={16}/> Add New Stat</button>
+                    <button
+  type="button"
+  onClick={addStat}
+  disabled={config.stats.length >= 4}
+  className="flex items-center gap-2 font-bold text-xs 
+             text-green-500 hover:underline
+             disabled:text-gray-400 
+             disabled:cursor-not-allowed 
+             disabled:hover:no-underline"
+>
+  <Plus size={16}/> {config.stats.length >= 4 ? "Max 4 Stats you cannot add more" : "Add New Stat"}
+</button>
                 </div>
 
                 {/* 3. FOUNDER DETAILS */}
@@ -165,7 +176,7 @@ const ManageAbout = () => {
                             </div>
                         ))}
                     </div>
-                    <button type="button" onClick={addValue} className="flex items-center gap-2 text-rose-500 font-bold text-xs hover:underline"><Plus size={16}/> Add New Value</button>
+                    <button type="button" onClick={addValue} disabled={config.valuesList.length >= 3}  className="flex items-center gap-2 text-rose-500 font-bold text-xs hover:underline disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:no-underline"><Plus size={16}/> {config.valuesList.length >= 3 ? "Max 3 Values you cannot add more" : "Add New Value"}</button>
                 </div>
 
                 <button disabled={loading} className="bg-blue-600 hover:bg-blue-500 px-12 py-5 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs flex items-center gap-3 shadow-2xl active:scale-95 transition-all w-full md:w-auto">

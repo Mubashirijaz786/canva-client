@@ -7,7 +7,6 @@ import SecondaryButton from '../common/SecondaryButton';
 import { useGlobalSettings } from '../../hooks/useGlobalSettings';
 import { axiosPublic } from '../../api/axios';
 
-import heroVideo from '../../assets/video/Hero.mp4'; 
 
 const Hero = () => {
     const { calendlyLink } = useGlobalSettings();
@@ -25,15 +24,8 @@ const Hero = () => {
         fetchHero();
     }, []);
 
-   
 
-    const defaultClients = [
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100", 
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100", 
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100"   
-    ];
-
-    const displayClientImages = heroData?.clientImages?.length > 0 ? heroData.clientImages : defaultClients;
+    const displayClientImages = heroData?.clientImages?.length > 0 ? heroData.clientImages : [];
 
     return (
         <div className="relative min-h-[100dvh] w-full bg-gradient-to-b from-[#020617] to-[#172554] flex items-center justify-center p-2 sm:p-4">
@@ -51,7 +43,7 @@ const Hero = () => {
                         playsInline
                         aria-hidden="true"
                     >
-                        <source src={heroData?.videoUrl || heroVideo} type="video/mp4" />
+                        <source src={heroData?.videoUrl } type="video/mp4" />
                     </video>
                     <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/90 via-[#020617]/50 to-transparent"></div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom'; 
-import { axiosPublic } from '../../api/axios'; // ✅ Backend connection
+import { axiosPublic } from '../../api/axios'; 
 
 import PrimaryButton from '../common/PrimaryButton';
 import SecondaryButton from '../common/SecondaryButton';
