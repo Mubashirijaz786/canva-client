@@ -65,7 +65,7 @@ const ProjectForm = ({ isOpen, onClose, onSubmit, loading, initialData }) => {
                         <input type="url" placeholder="Project Live Link" className="w-full bg-white/5 border border-white/10 p-4 pl-12 rounded-2xl text-white outline-none focus:border-blue-500" value={formData.link} onChange={e => setFormData({...formData, link: e.target.value})} />
                     </div>
 
-                    {/* ✅ Optimized Image Upload Section */}
+                    {}
                     <div className="flex items-center gap-6">
                         <label className="flex-grow bg-white/5 border border-dashed border-white/20 p-8 rounded-2xl cursor-pointer hover:bg-white/10 transition-all text-center group">
                             <Upload size={24} className="mx-auto mb-2 text-gray-500 group-hover:text-blue-500 transition-colors"/> 

@@ -6,7 +6,7 @@ import WhyChooseUsForm from '../components/whychooseus/WhyChooseUsForm';
 
 const ManageWhyChooseUs = () => {
     const [features, setFeatures] = useState([]);
-    const [mainImage, setMainImage] = useState(""); // ✅ Global Image State
+    const [mainImage, setMainImage] = useState(""); 
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [currentFeature, setCurrentFeature] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const ManageWhyChooseUs = () => {
     const fetchData = async () => {
         try {
             const res = await axiosPublic.get('/whychooseus');
-            setFeatures(res.data.cards || []); // Backend structure ke mutabiq
+            setFeatures(res.data.cards || []); 
             setMainImage(res.data.mainImage || "");
         } catch (err) { console.error(err); }
     };
@@ -28,7 +28,7 @@ const ManageWhyChooseUs = () => {
         data.append('image', file);
         setLoading(true);
         try {
-            // ✅ Put request to the dedicated image route
+            
             await axiosPrivate.put('/whychooseus/image', data);
             fetchData();
             alert("Main image updated!");
@@ -60,7 +60,7 @@ const ManageWhyChooseUs = () => {
         <div className="min-h-screen text-white font-['Manrope'] pb-20 px-4">
             <h1 className="text-3xl font-black italic mb-8 uppercase text-blue-500">Manage Section Content</h1>
 
-            {/* --- GLOBAL IMAGE UPLOADER --- */}
+            {}
             <div className="flex flex-col md:flex-row items-center justify-between bg-[#111827] border border-white/10 rounded-[2.5rem] p-8 mb-12 gap-6 shadow-2xl">
                 <div className="flex items-center gap-6">
                     <div className="w-24 h-24 rounded-2xl overflow-hidden bg-black/40 border border-white/10 relative group cursor-pointer">
@@ -95,7 +95,7 @@ const ManageWhyChooseUs = () => {
 
             </div>
 
-            {/* --- CARDS GRID --- */}
+            {}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {features.map(f => (
                     <WhyChooseUsCard

@@ -1,4 +1,4 @@
-/* Self-hosted Manrope font for better performance */
+
 @font-face {
   font-family: 'Manrope';
   src: url('/src/assets/fonts/Manrope-VariableFont_wght.ttf') format('truetype');
@@ -33,7 +33,7 @@
   }
 }
 
-/* Custom Scrollbar */
+
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #111; }
 ::-webkit-scrollbar-thumb { 
@@ -41,7 +41,7 @@
   border-radius: 4px; 
 }
 
-/* Keyframes */
+
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-33.33%); }
@@ -55,7 +55,7 @@
   100% { transform: translateX(-50%); }
 }
 
-/* Hover behaviors */
+
 .animate-scroll-left:hover,
 .animate-scroll-right:hover,
 .animate-loop-scroll:hover {

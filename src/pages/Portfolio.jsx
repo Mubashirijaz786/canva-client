@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Loader2 } from 'lucide-react';
 import { axiosPublic } from '../api/axios'; 
 
-// Import Layout Components
+
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import FinalCTA from '../components/home/FinalCTA';
@@ -11,13 +11,13 @@ import ScrollToTop from '../components/common/ScrollToTop';
 import MetaData from '../components/common/MetaData';
 
 const Portfolio = () => {
-    // ✅ DYNAMIC STATES
+    
     const [projects, setProjects] = useState([]);
     const [config, setConfig] = useState(null); 
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState("All");
 
-    // ✅ FETCH DATA
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -55,7 +55,7 @@ const Portfolio = () => {
             </div>
 
             <main id="main-content">
-                {/* 2. HERO SECTION */}
+                {}
                 <section className="relative pt-20 pb-24 px-6 lg:px-16 overflow-hidden">
                     <div className="absolute inset-0 bg-blue-600/10 blur-[120px] pointer-events-none"></div>
                     
@@ -75,7 +75,7 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                {/* 3. FILTER TABS */}
+                {}
                 <section className="pb-16 px-6 lg:px-16 py-3 lg:py-3">
                     <div className="container mx-auto max-w-[1400px] flex justify-center">
                         <div className="flex flex-wrap items-center justify-center gap-2 p-2 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
@@ -98,7 +98,7 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                {/* 4. PROJECTS GRID - No full page blink now */}
+                {}
                 <section className="pb-32 px-6 lg:px-16 min-h-[400px]">
                     <div className="container mx-auto max-w-[1400px]">
                         
@@ -154,7 +154,7 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                {/* 5. STATS SECTION */}
+                {}
                 <section className="py-24 bg-white/5 border-y border-white/5">
                     <div className="container mx-auto px-6 lg:px-16 max-w-[1400px]">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">

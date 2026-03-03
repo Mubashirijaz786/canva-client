@@ -1,5 +1,5 @@
 import React from 'react';
-import IconPicker from '../../layouts/IconPicker'; // ✅ Only added import
+import IconPicker from '../../layouts/IconPicker'; 
 import { 
     Layout, Info, Plus, Trash2, Globe, HelpCircle, 
     Type, AlignLeft, Sparkles, Image as ImageIcon, Upload,
@@ -9,7 +9,7 @@ import {
 
 const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
     
-    // --- Array Handlers ---
+    
     const addContentItem = () => setFormData({ 
         ...formData, 
         contentItems: [...formData.contentItems, { title: '', description: '', iconName: 'Zap' }] 
@@ -46,7 +46,7 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
         faqs: formData.faqs.filter((_, i) => i !== index) 
     });
 
-    // --- Styling Classes ---
+    
     const inputClass = "w-full bg-[#1e293b] border border-white/10 rounded-2xl p-4 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all shadow-inner";
     const selectClass = "w-full bg-[#1e293b] border border-white/10 rounded-2xl p-3 text-sm text-white outline-none focus:border-cyan-500 cursor-pointer shadow-md";
     const optionStyle = { backgroundColor: '#1e293b', color: 'white' };
@@ -55,10 +55,10 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
         <form id="serviceForm" onSubmit={onSubmit} className="space-y-8 pb-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 
-                {/* --- LEFT COLUMN (Main Content) --- */}
+                {}
                 <div className="lg:col-span-8 space-y-8">
                     
-                    {/* 1. HERO SETTINGS */}
+                    {}
                     <div className="bg-[#0f172a] border border-white/10 rounded-[2.5rem] p-8 shadow-2xl">
                         <div className="flex items-center gap-3 mb-8 border-b border-white/5 pb-4">
                             <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400"><Layout size={24} /></div>
@@ -88,7 +88,7 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
                                 </div>
                             </div>
 
-                            {/* Hero Image Upload */}
+                            {}
                             <div className="space-y-2">
                                 <label className="text-[10px] font-bold text-gray-400 uppercase ml-2 italic">Hero Banner Image</label>
                                 <div className="flex flex-col md:flex-row items-center gap-6 bg-[#1e293b] p-6 rounded-[2rem] border border-white/10 group">
@@ -113,7 +113,7 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
                         </div>
                     </div>
 
-                    {/* 2. OFFERINGS (Cards) */}
+                    {}
                     <div className="bg-[#0f172a] border border-white/10 rounded-[2.5rem] p-8 shadow-2xl">
                         <div className="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
                             <div className="flex items-center gap-3">
@@ -137,7 +137,7 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
                                         <button type="button" onClick={() => removeContentItem(idx)} className="text-red-500 hover:bg-red-500/10 p-2 rounded-lg transition-all"><Trash2 size={18}/></button>
                                     </div>
                                     
-                                    {/* ✅ Purana Select hata kar IconPicker lga dya ha srf */}
+                                    {}
                                     <IconPicker 
                                         selectedIcon={item.iconName} 
                                         onChange={(val) => {
@@ -157,7 +157,7 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
                         </div>
                     </div>
 
-                    {/* 3. CHECKLIST & WHY FAILS SECTION */}
+                    {}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="bg-[#0f172a] border border-white/10 rounded-[2.5rem] p-8 shadow-2xl">
                             <div className="flex justify-between items-center mb-6">
@@ -210,7 +210,7 @@ const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
                     </div>
                 </div>
 
-                {/* --- RIGHT COLUMN --- */}
+                {}
                 <div className="lg:col-span-4 space-y-8">
                     <div className="bg-[#0f172a] border border-blue-500/20 rounded-[2.5rem] p-8 shadow-2xl">
                         <h3 className="flex items-center gap-2 text-lg font-bold italic text-blue-400 mb-6"><Globe size={20} /> SEO Data</h3>

@@ -1,4 +1,4 @@
-// Import all 15 logo images
+
 import brand1 from '../assets/images/logos/brand1.webp';
 import brand2 from '../assets/images/logos/brand2.webp';
 import brand3 from '../assets/images/logos/brand3.webp';
@@ -15,7 +15,7 @@ import brand13 from '../assets/images/logos/brand13.webp';
 import brand14 from '../assets/images/logos/brand14.webp';
 import brand15 from '../assets/images/logos/brand15.webp';
 
-// Array used for mapping in the component
+
 export const logoImages = [
     brand1, brand2, brand3, brand4, brand5, 
     brand6, brand7, brand8, brand9, brand10, 

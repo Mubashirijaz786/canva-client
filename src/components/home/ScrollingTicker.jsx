@@ -2,7 +2,7 @@ import React from 'react';
 import { Sparkles } from 'lucide-react';
 
 const ScrollingTicker = () => {
-    // Content for the scrolling text
+    
     const items = [
         "Web & App Development",
         "Creative UX/UI Design",
@@ -12,18 +12,14 @@ const ScrollingTicker = () => {
         "AI Integration"
     ];
 
-    // Quadruple content for smoother loop
+    
     const marqueeContent = [...items, ...items, ...items, ...items];
 
     return (
         <section className="relative py-24 lg:py-32 bg-[#020617] overflow-hidden flex flex-col justify-center items-center min-h-[400px]">
             
-            {/* --- STRIP 1: BLUE GRADIENT (Slides Right to Left) --- */}
-            {/* MOBILE FIXES:
-                1. -rotate-6 (Steeper angle on mobile to clearly show 'X') -> lg:-rotate-3 (Flatter on desktop)
-                2. w-[200%] (Wider bars on mobile to prevent edges showing) -> lg:w-[120%]
-                3. Centered perfectly with top-1/2 left-1/2 transform
-            */}
+            {}
+            {}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] lg:w-[120%] -rotate-6 lg:-rotate-3 bg-gradient-to-r from-blue-600 to-cyan-500 py-4 lg:py-5 shadow-2xl shadow-blue-900/30 z-10 origin-center">
                 <div className="flex w-max animate-scroll-left items-center">
                     {marqueeContent.map((item, index) => (

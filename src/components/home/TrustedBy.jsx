@@ -5,7 +5,7 @@ import InfiniteMarquee from '../common/InfiniteMarquee';
 import { axiosPublic } from '../../api/axios';
 import { Loader2 } from 'lucide-react';
 import loopBackground from '../../assets/images/loop-background.webp';
-import defaultLoopImage from '../../assets/images/loop.webp';
+
 
 const TrustedBy = () => {
     const [data, setData] = useState(null);
@@ -68,7 +68,7 @@ const TrustedBy = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                     <div className="relative flex justify-center lg:justify-start group order-2 lg:order-1">
                         <div className="relative z-10 w-3/4 sm:w-full max-w-[350px] lg:max-w-[450px]">
-                            <img src={data?.sideImage || defaultLoopImage} alt="Loop" className="w-full h-auto object-contain drop-shadow-2xl" />
+                            <img src={data?.sideImage } alt="Loop" className="w-full h-auto object-contain drop-shadow-2xl" />
                         </div>
                     </div>
 

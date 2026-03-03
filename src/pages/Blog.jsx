@@ -7,9 +7,9 @@ import {
     Loader2 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { axiosPublic } from '../api/axios'; // ✅ API Instance
+import { axiosPublic } from '../api/axios'; 
 
-// Import Layout Components
+
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import WhatsAppButton from '../components/common/WhatsAppButton';
@@ -20,7 +20,7 @@ const Blog = () => {
     const [allPosts, setAllPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // --- FETCH DYNAMIC BLOGS FROM BACKEND ---
+    
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
@@ -45,14 +45,14 @@ const Blog = () => {
                 keywords="tech blog, web development insights, SEO tips, digital marketing blog"
             />
 
-            {/* 1. NAVBAR */}
+            {}
             <div className="relative w-full flex items-center justify-center p-2 sm:p-4 z-50">
                 <div className="relative z-10 w-full lg:w-[98%] bg-transparent border border-transparent flex flex-col px-4 sm:px-10 lg:px-16 pt-4">
                     <Navbar />
                 </div>
             </div>
 
-            {/* 2. HERO SECTION */}
+            {}
             <section className="relative pt-20 pb-16 px-6 lg:px-16 overflow-hidden text-center">
                 <div className="absolute inset-0 bg-blue-600/10 blur-[120px] pointer-events-none"></div>
                 <div className="container mx-auto max-w-[1200px] relative z-10">
@@ -69,12 +69,12 @@ const Blog = () => {
                 </div>
             </section>
 
-            {/* 3. MAIN CONTENT */}
+            {}
             <main id="main-content" className="pb-32 px-6 lg:px-16 pt-10">
                 <div className="container mx-auto max-w-[1400px] space-y-12">
                     
                     {loading ? (
-                        /* --- LOADING STATE --- */
+                        
                         <div className="flex flex-col items-center justify-center py-20 gap-4 text-gray-500">
                             <Loader2 className="animate-spin text-blue-500" size={40} />
                             <p className="italic">Fetching latest articles...</p>
@@ -89,7 +89,7 @@ const Blog = () => {
                                         className="relative group rounded-[3rem] overflow-hidden border border-white/10 bg-[#0f172a] hover:border-blue-500/30 transition-all duration-500 block"
                                     >
                                         <div className="grid grid-cols-1 lg:grid-cols-2">
-                                            {/* Image Side */}
+                                            {}
                                             <div className="relative h-[400px] lg:h-auto overflow-hidden">
                                                 <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply z-10 group-hover:bg-transparent transition-colors duration-500"></div>
                                                 <img 
@@ -102,7 +102,7 @@ const Blog = () => {
                                                 </div>
                                             </div>
 
-                                            {/* Content Side */}
+                                            {}
                                             <div className="p-10 lg:p-20 flex flex-col justify-center">
                                                 <div className="flex items-center gap-4 text-gray-400 text-sm mb-6">
                                                     <span className="flex items-center gap-2"><Calendar size={16} /> {post.date}</span>
@@ -133,7 +133,7 @@ const Blog = () => {
                                     </Link>
                                 ))
                             ) : (
-                                /* --- EMPTY STATE --- */
+                                
                                 <div className="text-center py-20 text-gray-500 bg-white/5 rounded-[3rem] border border-dashed border-white/10 italic font-['Manrope']">
                                     No articles published yet. Check back soon!
                                 </div>

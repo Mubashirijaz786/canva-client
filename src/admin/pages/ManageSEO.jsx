@@ -60,7 +60,7 @@ const ManageSEO = () => {
 
     return (
         <div className="min-h-screen text-white p-4 lg:p-8 font-['Manrope']">
-            {/* Header Section */}
+            {}
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 bg-[#111827] p-6 rounded-3xl border border-white/5 shadow-2xl">
                 <div>
                     <h1 className="text-2xl font-black italic uppercase text-blue-400">Global SEO Manager</h1>
@@ -78,7 +78,7 @@ const ManageSEO = () => {
             {fetching ? <div className="flex justify-center mt-20"><Loader2 className="animate-spin text-blue-500" size={40} /></div> : (
                 <form onSubmit={handleSave} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     
-                    {/* --- Left: Meta Data --- */}
+                    {}
                     <div className="space-y-6 bg-[#111827] p-8 rounded-[2.5rem] border border-white/10 shadow-2xl">
                         <h3 className="flex items-center gap-2 text-lg font-bold text-gray-200"><Globe size={20} className="text-blue-500"/> Search Engine (Meta)</h3>
                         
@@ -98,7 +98,7 @@ const ManageSEO = () => {
                         </div>
                     </div>
 
-                    {/* --- Right: Social Media --- */}
+                    {}
                     <div className="space-y-6 bg-[#111827] p-8 rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col">
                         <h3 className="flex items-center gap-2 text-lg font-bold text-gray-200"><Share2 size={20} className="text-pink-500"/> Social Media (OG)</h3>
                         
@@ -107,14 +107,14 @@ const ManageSEO = () => {
                             <input type="text" placeholder="Title for Facebook/WhatsApp" value={formData.ogTitle || ''} onChange={e => setFormData({...formData, ogTitle: e.target.value})} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500 transition-all" />
                         </div>
 
-                        {/* ✅ REDESIGNED UPLOAD BOX */}
+                        {}
                         <div className="space-y-2 flex-grow">
                             <label className="text-[10px] uppercase font-black text-gray-500 ml-2">Social Preview Image</label>
                             
                             <div className="relative group">
                                 <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-white/10 rounded-[2rem] bg-white/5 hover:bg-white/[0.08] hover:border-blue-500/50 transition-all cursor-pointer overflow-hidden">
                                     
-                                    {/* Preview logic */}
+                                    {}
                                     {(newImage || formData.ogImage) ? (
                                         <div className="relative w-full h-full">
                                             <img 

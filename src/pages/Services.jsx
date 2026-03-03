@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-// --- IMPORT CENTRALIZED DATA ---
+
 import { servicesData } from '../data/servicesData';
 import ServiceLayout from '../components/services/ServiceLayout';
 import MetaData from '../components/common/MetaData';
@@ -11,7 +11,7 @@ const Services = () => {
     return (
         <ServiceLayout>
             
-            {/* ✅ SEO META TAGS FOR SERVICES PAGE */}
+            {}
             <MetaData 
             pageName="services"
                 title="Services – Canva Solutions
@@ -20,10 +20,10 @@ const Services = () => {
                 keywords="web development services, mobile app development, SEO agency, graphic design services, custom software, digital marketing solutions, ecommerce development"
             />
 
-            {/* 1. HERO SECTION */}
+            {}
             <main id="main-content">
             <section className="relative pt-20 pb-32 px-6 lg:px-16 overflow-hidden">
-                {/* Background Glow */}
+                {}
                 <div className="absolute inset-0 bg-blue-600/10 blur-[120px] pointer-events-none"></div>
                 
                 <div className="container mx-auto max-w-[1200px] relative z-10 text-center">
@@ -40,12 +40,12 @@ const Services = () => {
                 </div>
             </section>
 
-            {/* 2. SERVICES GRID */}
+            {}
             <section className="pb-32 pt-10 px-6 lg:px-16 relative z-10">
                 <div className="container mx-auto max-w-[1500px]">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         
-                        {/* MAPPING FROM CENTRALIZED DATA */}
+                        {}
                         {servicesData.map((service) => (
                             <Link 
                                 key={service.id} 
@@ -67,17 +67,17 @@ const Services = () => {
                                     hover:shadow-2xl 
                                 "
                             >
-                                {/* Dynamic Glow Effect based on color */}
+                                {}
                                 <div className={`absolute inset-0 bg-gradient-to-br from-${service.color}-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                                 
                                 <div className="relative z-10 flex flex-col h-full">
-                                    {/* Icon */}
+                                    {}
                                     <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400 mb-8 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all duration-300">
-                                        {/* RESIZING ICON TO 40px FOR THIS PAGE */}
+                                        {}
                                         {React.cloneElement(service.icon, { size: 40 })}
                                     </div>
                                     
-                                    {/* Content */}
+                                    {}
                                     <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-200 transition-colors font-['Manrope']">
                                         {service.title}
                                     </h3>
@@ -85,7 +85,7 @@ const Services = () => {
                                         {service.desc}
                                     </p>
                                     
-                                    {/* CTA Arrow */}
+                                    {}
                                     <div className="flex items-center text-blue-400 font-bold group-hover:gap-2 transition-all mt-auto">
                                         Learn More <ArrowRight size={18} className="ml-2" />
                                     </div>

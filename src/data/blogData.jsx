@@ -1,18 +1,18 @@
-// --- IMPORT LOCAL IMAGES ---
-// Blog 1 Images (Freelancing)
+
+
 import freelanceMain from '../assets/images/blog/main1.webp'; 
 import freelance1 from '../assets/images/blog/2.webp';
 import freelance2 from '../assets/images/blog/3.webp';
 
-// Blog 2 Image (Business)
+
 import businessMain from '../assets/images/blog/main2.webp'; 
 
-// Blog 3 Image (Digital Services) - Make sure main3.webp exists!
+
 import digitalMain from '../assets/images/blog/main3.webp'; 
 
 
 export const blogData = [
-    // --- BLOG 1 ---
+    
     {
         id: 1, 
         title: "Best Digital Tools for Freelancers to Simplify Their Work in 2025",
@@ -41,7 +41,7 @@ export const blogData = [
         ]
     },
 
-    // --- BLOG 2 ---
+    
     {
         id: 2, 
         title: "Step by Step Guide for Launching an Online Business Profitable in 2025",
@@ -67,7 +67,7 @@ export const blogData = [
         ]
     },
 
-    // --- BLOG 3 ---
+    
     {
         id: 3, 
         title: "Why Digital Services Are a Necessity for Modern Enterprises",
@@ -79,7 +79,7 @@ export const blogData = [
         date: "Feb 10, 2025",
         
         image: digitalMain, 
-        innerImages: [ freelance1, freelance2 ], // Reusing same images as requested
+        innerImages: [ freelance1, freelance2 ], 
 
         intro: "In today’s fast-paced commerce world, something stands out and makes all the difference: digital services. A startup looking to disrupt the current market or a well-established firm seeking to keep ahead of its competitors must be open to this digital transformation- and it is not a choice but a necessity. But why do digital services really matter to businesses today? Here are the major reasons.",
 

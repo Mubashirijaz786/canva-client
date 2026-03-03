@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Loader2 } from 'lucide-react';
 import { axiosPublic } from '../api/axios'; 
 
-// Layout Components
+
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import FinalCTA from '../components/home/FinalCTA';
@@ -10,7 +10,7 @@ import WhatsAppButton from '../components/common/WhatsAppButton';
 import ScrollToTop from '../components/common/ScrollToTop';
 import MetaData from '../components/common/MetaData';
 import DynamicIcon from '../components/common/DynamicIcon';
-import InfiniteMarquee from '../components/common/InfiniteMarquee'; // ✅ Added
+import InfiniteMarquee from '../components/common/InfiniteMarquee';
 
 const About = () => {
     const [team, setTeam] = useState([]);
@@ -36,7 +36,6 @@ const About = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    // ✅ Team cards ko markup mein convert kiya marquee ke liye
     const teamCards = useMemo(() => {
         return team.map((member, index) => (
             <div key={index} className="w-[300px] shrink-0 mx-4 relative group">
@@ -74,12 +73,12 @@ const About = () => {
             </div>
 
             <main id="main-content">
-                {/* 2. HERO SECTION */}
                 <section className="relative pt-20 pb-32 px-6 lg:px-16 overflow-hidden text-center">
                     <div className="absolute inset-0 bg-blue-600/10 blur-[120px] pointer-events-none"></div>
                     <div className="container mx-auto max-w-[1000px] relative z-10">
                         <div className="inline-block border border-white/10 rounded-full px-5 py-2 text-sm font-medium text-blue-400 mb-8 bg-white/5 backdrop-blur-sm uppercase tracking-widest">
-                            {aboutData?.badgeText}
+                            {aboutData?.badgeText} 
+                            
                         </div>
                         <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] text-white tracking-tight">
                             {aboutData?.heroTitle} <br />
@@ -93,7 +92,6 @@ const About = () => {
                     </div>
                 </section>
 
-                {/* 3. IMAGE & STATS GRID */}
                 <section className="px-6 lg:px-16 pb-24 pt-6">
                     <div className="container mx-auto max-w-[1400px]">
                         <div className="relative rounded-[3rem] overflow-hidden aspect-video lg:aspect-[21/9] mb-16 group border border-white/5 shadow-2xl">
@@ -115,7 +113,6 @@ const About = () => {
                     </div>
                 </section>
 
-                {/* 4. FOUNDER SECTION */}
                 <section className="py-24 bg-white/[0.02] border-y border-white/5 overflow-hidden">
                     <div className="container mx-auto px-6 lg:px-16 max-w-[1200px]">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -156,7 +153,6 @@ const About = () => {
                     </div>
                 </section>
 
-                {/* 5. CORE VALUES */}
                 <section className="py-24 px-6 lg:px-16">
                     <div className="container mx-auto max-w-[1400px]">
                         <div className="text-center mb-16">
@@ -177,7 +173,6 @@ const About = () => {
                     </div>
                 </section>
 
-                {/* 6. TEAM SECTION WITH MARQUEE */}
                 <section className="py-24 bg-gradient-to-b from-[#020617] to-[#0f172a] overflow-hidden">
                     <div className="container mx-auto px-6 lg:px-16 mb-16 text-center">
                         <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Meet The Minds</h2>

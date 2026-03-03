@@ -140,7 +140,7 @@ const Dashboard = () => {
                                                 <h4 className="font-bold text-sm text-white">{msg.name}</h4>
                                                 <span className="text-[7px] font-black bg-blue-500 text-white px-1.5 py-0.5 rounded-sm uppercase tracking-tighter">ACTION</span>
                                                 
-                                                {/* ✅ ATTACHMENT INDICATOR */}
+                                                {}
                                                 {msg.attachmentUrl && (
                                                     <div className="flex items-center gap-1 bg-green-500/20 text-green-500 px-2 py-0.5 rounded-full border border-green-500/30">
                                                         <Paperclip size={10} />
@@ -148,7 +148,7 @@ const Dashboard = () => {
                                                     </div>
                                                 )}
                                             </div>
-                                            {/* ✅ SHOW SERVICE TYPE */}
+                                            {}
                                             <p className="text-gray-500 text-[10px] font-bold italic uppercase tracking-widest">
                                                 {msg.service || "General Inquiry"}
                                             </p>

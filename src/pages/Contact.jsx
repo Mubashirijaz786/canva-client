@@ -4,7 +4,7 @@ import {
     Paperclip, CheckCircle, DollarSign, ArrowRight, X, AlertCircle 
 } from 'lucide-react';
 
-// Import Layout Components
+
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import WhatsAppButton from '../components/common/WhatsAppButton';
@@ -14,19 +14,19 @@ import MetaData from '../components/common/MetaData';
 import { axiosPublic } from '../api/axios'; 
 
 const Contact = () => {
-    // ✅ 1. DYNAMIC SETTINGS & FORM STATE
+    
     const [settings, setSettings] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null); 
     const [fileName, setFileName] = useState("");
     const [fileError, setFileError] = useState("");
-    const [selectedFile, setSelectedFile] = useState(null); // File store karne ke liye
+    const [selectedFile, setSelectedFile] = useState(null); 
 
     const [formData, setFormData] = useState({
         name: '', email: '', phone: '', budget: '', service: '', message: ''
     });
 
-    // ✅ 2. FETCH ADMIN SETTINGS ON LOAD
+    
     useEffect(() => {
         const fetchSettings = async () => {
             try {
@@ -39,7 +39,7 @@ const Contact = () => {
         fetchSettings();
     }, []);
 
-    // ✅ 3. HANDLERS
+    
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -47,7 +47,7 @@ const Contact = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            if (file.size > 25 * 1024 * 1024) { // 25MB Limit
+            if (file.size > 25 * 1024 * 1024) { 
                 setFileError("File exceeds 25MB limit.");
                 setFileName("");
                 setSelectedFile(null);
@@ -55,7 +55,7 @@ const Contact = () => {
             } else {
                 setFileError("");
                 setFileName(file.name);
-                setSelectedFile(file); // File state mein save karo
+                setSelectedFile(file); 
             }
         }
     };
@@ -68,13 +68,13 @@ const Contact = () => {
         if (fileInput) fileInput.value = "";
     };
 
-    // ✅ 4. DYNAMIC SUBMISSION (With Attachment Support)
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmitStatus(null);
 
-        // ✅ IMPORTANT: Use FormData for files
+        
         const data = new FormData();
         data.append('name', formData.name);
         data.append('email', formData.email);
@@ -84,11 +84,11 @@ const Contact = () => {
         data.append('message', formData.message);
         
         if (selectedFile) {
-            data.append('attachment', selectedFile); // Backend 'attachment' field pakrega
+            data.append('attachment', selectedFile); 
         }
 
         try {
-            // Backend API call
+            
             const res = await axiosPublic.post('/inquiries', data, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
@@ -142,10 +142,10 @@ const Contact = () => {
                     <div className="container mx-auto max-w-[1400px]">
                         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-24">
                             
-                            {/* LEFT COLUMN: DYNAMIC INFO FROM ADMIN SETTINGS */}
+                            {}
                             <div className="lg:col-span-2 space-y-12 relative z-20">
                                 <div className="space-y-6">
-                                    {/* Email Card */}
+                                    {}
                                     <div className="relative z-50 p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group shadow-lg">
                                         <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform"><Mail size={24} /></div>
                                         <h3 className="text-xl font-bold text-white mb-2">Chat with us</h3>
@@ -157,7 +157,7 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* Visit Us Card */}
+                                    {}
                                     <div className="relative z-50 p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group shadow-lg">
                                         <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 mb-6 group-hover:scale-110 transition-transform"><MapPin size={24} /></div>
                                         <h3 className="text-xl font-bold text-white mb-6">Visit us</h3>
@@ -171,7 +171,7 @@ const Contact = () => {
                                         </div>
                                     </div>
 
-                                    {/* Phone Card */}
+                                    {}
                                     <div className="relative z-50 p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group shadow-lg">
                                         <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform"><Phone size={24} /></div>
                                         <h3 className="text-xl font-bold text-white mb-2">Call us</h3>
@@ -185,7 +185,7 @@ const Contact = () => {
                                 </div>
                             </div>
 
-                            {/* RIGHT COLUMN: THE FORM */}
+                            {}
                             <div className="lg:col-span-3">
                                 <div className="p-8 lg:p-12 rounded-[2.5rem] bg-[#0f172a] border border-white/10 shadow-2xl relative overflow-hidden backdrop-blur-xl">
                                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[100px] pointer-events-none"></div>
@@ -255,7 +255,7 @@ const Contact = () => {
             </option>
         </select>
         
-        {/* Custom Arrow Icon */}
+        {}
         <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-focus-within:text-blue-400 group-hover:text-white transition-colors">
             <ChevronDown size={20} />
         </div>

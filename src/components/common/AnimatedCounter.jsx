@@ -12,7 +12,7 @@ const AnimatedCounter = ({ end, duration = 2000, trigger = false }) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             
-            // Ease-out function (starts fast, slows down at the end)
+            
             const easeOutQuart = 1 - Math.pow(1 - progress, 4);
             
             setCount(Math.floor(easeOutQuart * end));

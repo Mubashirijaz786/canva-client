@@ -3,7 +3,7 @@ import { axiosPrivate } from '../../api/axios';
 import { 
     Loader2, Mail, Phone, Calendar, ChevronRight, X, 
     Trash2, Inbox, CheckCircle2, CheckCircle, RotateCcw, 
-    Paperclip, ExternalLink // ✅ New Icons
+    Paperclip, ExternalLink 
 } from 'lucide-react';
 
 const Inquiries = () => {
@@ -105,7 +105,7 @@ const Inquiries = () => {
                                     {msg.status === 'unread' && (
                                         <span className="bg-blue-500 text-white text-[8px] px-2 py-0.5 rounded-full font-black uppercase tracking-widest animate-pulse">New Lead</span>
                                     )}
-                                    {/* ✅ LIST VIEW ATTACHMENT INDICATOR */}
+                                    {}
                                     {msg.attachmentUrl && (
                                         <Paperclip size={14} className="text-green-500" />
                                     )}
@@ -146,7 +146,7 @@ const Inquiries = () => {
                 )}
             </div>
 
-            {/* --- Modal Detail Section --- */}
+            {}
             {selectedMsg && (
                 <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 backdrop-blur-2xl bg-black/80">
                     <div className="bg-[#0f172a] border border-white/10 w-full max-w-2xl rounded-[3rem] p-10 relative animate-in zoom-in duration-300 shadow-2xl overflow-y-auto max-h-[90vh]">
@@ -198,7 +198,7 @@ const Inquiries = () => {
                             )}
                         </div>
 
-                        {/* ✅ NEW ATTACHMENT SECTION (Restored) */}
+                        {}
                         {selectedMsg.attachmentUrl && (
                             <div className="mb-8 p-6 rounded-[2rem] bg-green-500/5 border border-green-500/20 flex items-center justify-between group/file">
                                 <div className="flex items-center gap-4">

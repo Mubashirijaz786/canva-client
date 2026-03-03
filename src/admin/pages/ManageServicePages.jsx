@@ -92,7 +92,7 @@ const ManageServicePages = () => {
 
     return (
         <div className="p-6 font-['Manrope'] text-white space-y-8 animate-in fade-in duration-500">
-            {/* Header */}
+            {}
             <div className="flex justify-between items-center bg-[#0f172a] p-8 rounded-[2rem] border border-white/10 shadow-2xl">
                 <div>
                     <h1 className="text-3xl font-black italic tracking-tighter text-white">Services CMS</h1>

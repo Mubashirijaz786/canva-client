@@ -18,7 +18,7 @@ const ServiceLayout = ({ children, title, subtitle }) => {
 
             {title && (
                 <section className="relative pt-20 pb-32 px-6 lg:px-16 overflow-hidden">
-                    {/* Background Glow */}
+                    {}
                     <div className="absolute inset-0 bg-blue-600/10 blur-[100px] pointer-events-none"></div>
                     
                     <div className="container mx-auto max-w-[1200px] relative z-10 text-center">
@@ -35,16 +35,16 @@ const ServiceLayout = ({ children, title, subtitle }) => {
                 </section>
             )}
 
-            {/* 3. The Page Specific Content */}
+            {}
             <div className="relative z-10">
                 {children}
             </div>
 
-            {/* 4. Common Bottom Sections */}
+            {}
             <FinalCTA />
             <Footer />
 
-            {/* 5. Floating Buttons */}
+            {}
             <WhatsAppButton />
             <ScrollToTop />
         </div>

@@ -1,5 +1,5 @@
-// ✅ Step 1: Import images from your local folder
-// Make sure the path matches your folder structure: src/assets/images/team/
+
+
 import ahmadImg from '../assets/images/team/Ahmad.webp';
 import hanzalaImg from '../assets/images/team/Hanzala.webp';
 import husnainImg from '../assets/images/team/Husnain.webp';
@@ -8,7 +8,7 @@ import moizImg from '../assets/images/team/Moiz.webp';
 import mustafaImg from '../assets/images/team/Mustafa.webp';
 import zaibImg from '../assets/images/team/Zaib.webp';
 
-// ✅ Step 2: Use the imported variables in the 'image' field
+
 export const teamMembers = [
     {
         id: 1,

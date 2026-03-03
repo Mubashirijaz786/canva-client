@@ -8,7 +8,7 @@ const Register = () => {
     const [otp, setOtp] = useState('');
     const [loading, setLoading] = useState(false);
     const [otpSent, setOtpSent] = useState(false);
-    const [isRegistered, setIsRegistered] = useState(false); // ✅ Success Screen State
+    const [isRegistered, setIsRegistered] = useState(false); 
     const [timer, setTimer] = useState(0);
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Register = () => {
         setError('');
         try {
             await axiosPublic.post('/auth/register', { ...formData, otp });
-            // ✅ Yahan redirect nahi karenge, success screen dikhayenge
+            
             setIsRegistered(true); 
         } catch (err) {
             setError(err.response?.data?.message || 'Invalid OTP.');
@@ -54,16 +54,14 @@ const Register = () => {
 
     return (
         <div className="min-h-screen bg-[#020617] flex items-center justify-center p-4 font-['Manrope'] relative overflow-hidden">
-            {/* Background Glows */}
+            {}
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full"></div>
             <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 blur-[120px] rounded-full"></div>
 
             <div className="w-full max-w-[450px] bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-8 md:p-12 backdrop-blur-2xl shadow-2xl z-10 transition-all duration-500">
                 
                 {isRegistered ? (
-                    /* ==========================================
-                       ✅ SUCCESS SCREEN (Registration Complete)
-                       ========================================== */
+                    
                     <div className="text-center animate-in zoom-in-95 duration-500 py-4">
                         <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/10 mb-6">
                             <div className="w-14 h-14 rounded-full bg-green-500 flex items-center justify-center shadow-[0_0_30px_rgba(34,197,94,0.4)]">
@@ -84,9 +82,7 @@ const Register = () => {
                         </Link>
                     </div>
                 ) : (
-                    /* ==========================================
-                       FORM VIEW (Step 1 & 2)
-                       ========================================== */
+                    
                     <>
                         <div className="text-center mb-10">
                             <div className="inline-block p-4 rounded-2xl bg-blue-600/10 mb-4">
@@ -105,7 +101,7 @@ const Register = () => {
                         )}
 
                         {!otpSent ? (
-                            /* STEP 1: Details */
+                            
                             <form onSubmit={handleInitialSubmit} className="space-y-4">
                                 <div className="group relative">
                                     <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-blue-500 transition-colors" size={18} />
@@ -124,7 +120,7 @@ const Register = () => {
                                 </button>
                             </form>
                         ) : (
-                            /* STEP 2: OTP Verification */
+                            
                             <form onSubmit={handleFinalRegister} className="space-y-6 animate-in slide-in-from-right-4 duration-500">
                                 <div className="text-center px-4">
                                     <p className="text-gray-400 text-sm leading-relaxed">

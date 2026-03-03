@@ -3,7 +3,7 @@ import { UserPlus, Mail, Lock, User, Loader2, CheckCircle, ShieldAlert, ArrowRig
 import { axiosPrivate } from '../../api/axios';
 
 const AddAdmin = () => {
-    const [view, setView] = useState('list'); // 'list' or 'add'
+    const [view, setView] = useState('list'); 
     const [admins, setAdmins] = useState([]);
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [otp, setOtp] = useState('');
@@ -39,7 +39,7 @@ const AddAdmin = () => {
         }
     };
 
-    // --- OTP LOGIC (Your existing code) ---
+    
     const handleSendOTP = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -74,7 +74,7 @@ const AddAdmin = () => {
 
     return (
         <div className="max-w-5xl mx-auto font-['Manrope'] animate-in fade-in duration-500 pb-20">
-            {/* Header */}
+            {}
             <div className="flex justify-between items-end mb-10">
                 <div>
                     <h1 className="text-4xl font-black text-white tracking-tight italic">Admin Control</h1>
@@ -104,7 +104,7 @@ const AddAdmin = () => {
             )}
 
             {view === 'list' ? (
-                /* --- ADMIN LIST VIEW --- */
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {loading ? <Loader2 className="animate-spin text-blue-500 mx-auto col-span-2" /> : (
                         admins.map(admin => (
@@ -134,7 +134,7 @@ const AddAdmin = () => {
                     )}
                 </div>
             ) : (
-                /* --- ADD ADMIN VIEW (Your Original Form) --- */
+                
                 <div className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-10 backdrop-blur-2xl relative overflow-hidden max-w-2xl mx-auto">
                     {success && (
                         <div className="mb-8 p-4 bg-green-500/10 border border-green-500/20 rounded-2xl text-green-400 flex items-center gap-3">

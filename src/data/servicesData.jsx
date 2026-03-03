@@ -14,7 +14,7 @@ export const servicesData = [
         id: 1,
         title: "Web Design & Development", 
         desc: "Custom, high-performance websites built with React & Node.js.",
-        icon: <Monitor size={80} strokeWidth={1} />, // Default size for home (can be overridden if needed)
+        icon: <Monitor size={80} strokeWidth={1} />, 
         link: "/services/web-development",
         color: "blue"
     },

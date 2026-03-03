@@ -1,4 +1,4 @@
-// 1. Import all images from your local folder
+
 import usmanBilla from '../assets/images/portfolio/usmanbilla.webp';
 import chaseIt from '../assets/images/portfolio/chaseit.webp';
 import training from '../assets/images/portfolio/traning.webp';
@@ -17,7 +17,7 @@ import crystalSolution from '../assets/images/portfolio/Crystalsolution.webp';
 import kissanGhar from '../assets/images/portfolio/kissanghar.webp';
 import nest from '../assets/images/portfolio/nest.webp';
 
-// Dashboard / Web Analytics Images
+
 import webAnalytics from '../assets/images/portfolio/webanalrics.webp';
 import webAna from '../assets/images/portfolio/webana.webp';
 import web1 from '../assets/images/portfolio/web1.webp';
@@ -27,10 +27,10 @@ import web4 from '../assets/images/portfolio/web4.webp';
 import web5 from '../assets/images/portfolio/web5.webp';
 import web6 from '../assets/images/portfolio/web6.webp';
 
-// 2. Define Categories
+
 export const categories = ["All", "Web Dev", "E-Commerce", "Dashboards", "Mobile Apps"];
 
-// 3. Portfolio Data
+
 export const projects = [
     {
         id: 1,
@@ -202,7 +202,7 @@ export const projects = [
         link: "#",
         color: "yellow"
     },
-    // --- DASHBOARD / ANALYTICS SECTION ---
+    
     {
         id: 18,
         title: "Analytics Dashboard",

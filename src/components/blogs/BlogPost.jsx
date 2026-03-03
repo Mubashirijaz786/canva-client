@@ -3,22 +3,22 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock, Tag, Loader2 } from 'lucide-react';
 import { axiosPublic } from '../../api/axios';
 
-// --- IMPORTS ---
+
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
 import ScrollToTop from '../common/ScrollToTop';
 import WhatsAppButton from '../common/WhatsAppButton';
-import MetaData from '../common/MetaData'; // ✅ SEO Component
+import MetaData from '../common/MetaData'; 
 
 const BlogPost = () => {
-    const { slug } = useParams(); // ✅ URL se 'slug' uthayega (e.g. /blog/mera-post)
+    const { slug } = useParams(); 
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchSingleBlog = async () => {
             try {
-                // ✅ Backend par slug se fetch karne wali API hit hogi
+                
                 const res = await axiosPublic.get(`/blogs/slug/${slug}`);
                 setBlog(res.data);
             } catch (err) {
@@ -50,8 +50,7 @@ const BlogPost = () => {
     return (
         <div className="w-full relative bg-[#020617] min-h-screen text-white selection:bg-blue-500/30 overflow-x-hidden">
             
-            {/* ✅ DYNAMIC SEO FOR REACT 19 ✅ 
-                Ye tags React 19 khud head mein hoist kar dega */}
+            {}
             <MetaData 
                 title={`${blog.metaTitle || blog.title} | Canva Solutions`} 
                 description={blog.metaDescription || blog.excerpt}
@@ -66,7 +65,7 @@ const BlogPost = () => {
 
             <article className="pb-24 relative z-10">
                 
-                {/* --- HEADER SECTION --- */}
+                {}
                 <div className="container mx-auto px-6 lg:px-16 max-w-5xl text-center mb-16 pt-20 animate-in fade-in slide-in-from-top-4 duration-700">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-bold tracking-wide mb-8 uppercase">
                         <Tag size={14} /> {blog.category}
@@ -98,7 +97,7 @@ const BlogPost = () => {
                     </div>
                 </div>
 
-                {/* --- MAIN HERO IMAGE --- */}
+                {}
                 <div className="container mx-auto px-4 lg:px-16 max-w-6xl mb-20">
                     <div className="relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl group">
                         <img 
@@ -110,7 +109,7 @@ const BlogPost = () => {
                     </div>
                 </div>
 
-                {/* --- CONTENT SECTION --- */}
+                {}
                 <div className="container mx-auto px-6 lg:px-16 max-w-4xl">
                     <div className="prose prose-lg prose-invert max-w-none mb-16">
                         <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-light italic opacity-90">

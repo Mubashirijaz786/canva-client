@@ -17,7 +17,7 @@ const ResetPassword = () => {
         setMessage('');
 
         try {
-            // Backend ko email aur naya password bhej rahe hain
+            
             const response = await axiosPublic.post('/auth/reset-password', { 
                 token, 
                 password, 
@@ -27,7 +27,7 @@ const ResetPassword = () => {
             setMessage("Password updated! Redirecting to login...");
             setTimeout(() => navigate('/admin-login'), 3000);
         } catch (err) {
-            // Error handling ko simple rakha hai taake crash na ho
+            
             const errorMsg = err.response?.data?.message || "Reset link expired or invalid";
             alert(errorMsg);
         } finally {
@@ -37,7 +37,7 @@ const ResetPassword = () => {
 
     return (
         <div className="min-h-screen bg-[#020617] flex items-center justify-center p-6 font-['Manrope'] relative overflow-hidden">
-            {/* Background Glow */}
+            {}
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full"></div>
 
             <div className="w-full max-w-md bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-10 backdrop-blur-xl shadow-2xl z-10">
@@ -87,4 +87,4 @@ const ResetPassword = () => {
     );
 };
 
-export default ResetPassword; // ✅ Ensure Default Export
+export default ResetPassword; 

@@ -46,7 +46,7 @@ const ManageFAQs = () => {
             <h1 className="text-3xl font-black italic tracking-tight uppercase">Manage FAQs</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                {/* --- ADD NEW FAQ FORM --- */}
+                {}
                 <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] h-fit sticky top-24">
                     <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                         <Plus size={20} className="text-blue-500" /> Add New Question
@@ -81,7 +81,7 @@ const ManageFAQs = () => {
                     </form>
                 </div>
 
-                {/* --- FAQ LIST --- */}
+                {}
                 <div className="lg:col-span-2 space-y-4">
                     {faqs.map((faq) => (
                         <div key={faq._id} className="bg-white/[0.02] border border-white/10 p-6 rounded-3xl flex justify-between items-start group hover:bg-white/[0.05] transition-all">

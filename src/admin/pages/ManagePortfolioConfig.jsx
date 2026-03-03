@@ -49,7 +49,7 @@ const ManagePortfolioConfig = () => {
         }
     };
 
-    // ✅ FIXED: Limit condition added here
+    
     const addStat = () => {
         if (config.stats.length >= 4) {
             alert("⚠️ You can only add up to 4 stats.");
@@ -114,7 +114,7 @@ const ManagePortfolioConfig = () => {
                             <Trophy size={20}/> Performance Ranking ({config.stats.length}/4)
                         </h3>
                         
-                        {/* ✅ Button disabled logic added */}
+                        {}
                         <button 
                             type="button" 
                             onClick={addStat} 

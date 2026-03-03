@@ -5,9 +5,9 @@ const ScrollRestoration = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // This resets the scroll to the top of the window
+    
     window.scrollTo(0, 0);
-  }, [pathname]); // Runs every time the URL changes
+  }, [pathname]); 
 
   return null;
 };

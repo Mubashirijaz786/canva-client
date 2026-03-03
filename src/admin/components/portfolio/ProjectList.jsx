@@ -19,12 +19,12 @@ const ProjectList = ({ projects, onEdit, onDelete }) => {
                                 </a>
                             )}
 
-                            {/* Edit Button: Visible to both Admin and Superadmin */}
+                            {}
                             <button onClick={() => onEdit(project)} className="p-2 bg-black/50 backdrop-blur-md text-blue-400 rounded-xl hover:bg-blue-500 hover:text-white transition-all">
                                 <Edit3 size={16}/>
                             </button>
                             
-                            {/* ✅ STRICT CHECK: Only Superadmin can see the Delete Button */}
+                            {}
                             {adminAuth?.role === 'superadmin' ? (
                                 <button 
                                     onClick={() => onDelete(project._id)} 

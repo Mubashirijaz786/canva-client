@@ -2,18 +2,18 @@
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../common/PrimaryButton';
-import { axiosPublic } from '../../api/axios'; // ✅ API Instance import kiya
+import { axiosPublic } from '../../api/axios'; 
 
 const InsightsBlog = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // --- FETCH DYNAMIC BLOGS FOR HOME PAGE ---
+    
     useEffect(() => {
         const fetchHomeBlogs = async () => {
             try {
                 const res = await axiosPublic.get('/blogs');
-                // Backend se data le kar latest 3 posts slice kar li
+                
                 setPosts(res.data.slice(0, 3));
             } catch (err) {
                 console.error("Error fetching home blogs:", err);
@@ -27,10 +27,10 @@ const InsightsBlog = () => {
     return (
         <section className="relative py-24 lg:py-32 bg-[#020617] overflow-hidden">
             
-            {/* Standard Wide Container */}
+            {}
             <div className="container mx-auto px-6 lg:px-12 max-w-[1500px] relative z-10">
                 
-                {/* --- HEADER --- */}
+                {}
                 <div className="text-center mb-24">
                     <div className="inline-block border border-white/10 rounded-full px-5 py-2 text-sm font-medium text-gray-400 mb-8 bg-white/5 backdrop-blur-sm">
                         Insights Blog
@@ -41,7 +41,7 @@ const InsightsBlog = () => {
                     </h2>
                 </div>
 
-                {/* --- BLOG GRID (DYNAMIC) --- */}
+                {}
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-20 gap-4 text-gray-500">
                         <Loader2 className="animate-spin text-blue-500" size={40} />
@@ -52,7 +52,7 @@ const InsightsBlog = () => {
                         {posts.length > 0 ? (
                             posts.map((post) => (
                                 <Link 
-                                    to={`/blog/${post._id}`} // ✅ MongoDB ID use ho rahi hai
+                                    to={`/blog/${post._id}`} 
                                     key={post._id} 
                                     className="
                                         group 
@@ -69,7 +69,7 @@ const InsightsBlog = () => {
                                     "
                                 >
                                     
-                                    {/* Image Wrapper */}
+                                    {}
                                     <div className="relative h-[300px] overflow-hidden shrink-0">
                                         <img 
                                             src={post.image} 
@@ -79,10 +79,10 @@ const InsightsBlog = () => {
                                         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
                                     </div>
 
-                                    {/* Content */}
+                                    {}
                                     <div className="p-10 flex flex-col flex-grow">
                                         
-                                        {/* Meta Data */}
+                                        {}
                                         <div className="flex items-center gap-4 mb-6">
                                             <span className="px-4 py-1.5 bg-[#FFE5A3] text-black text-xs font-bold uppercase tracking-wider rounded-full">
                                                 {post.category}
@@ -92,12 +92,12 @@ const InsightsBlog = () => {
                                             </span>
                                         </div>
 
-                                        {/* Title */}
+                                        {}
                                         <h3 className="text-2xl font-bold text-white mb-8 leading-snug group-hover:text-blue-200 transition-colors font-['Manrope'] line-clamp-3">
                                             {post.title}
                                         </h3>
 
-                                        {/* Read More Button */}
+                                        {}
                                         <div className="mt-auto">
                                             <div className="
                                                 inline-flex items-center gap-2 
@@ -124,7 +124,7 @@ const InsightsBlog = () => {
                     </div>
                 )}
 
-                {/* --- BOTTOM CTA --- */}
+                {}
                 <div className="flex justify-center">
                     <Link to="/blog">
                         <PrimaryButton className="!px-10 !py-5 text-lg">

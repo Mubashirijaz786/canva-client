@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosPrivate, axiosPublic } from '../../api/axios';
 import { Save, Loader2, Plus, Trash2 } from 'lucide-react';
-import IconPicker from '../layouts/IconPicker'; // ✅ Aapka IconPicker use ho raha hai
+import IconPicker from '../layouts/IconPicker'; 
 
 const ManageServices = () => {
     const [services, setServices] = useState([]);

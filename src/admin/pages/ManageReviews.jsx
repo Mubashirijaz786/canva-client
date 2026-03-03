@@ -6,7 +6,7 @@ import ReviewForm from '../components/reviews/ReviewForm';
 
 const ManageReviews = () => {
     const [reviews, setReviews] = useState([]);
-    const [brandingImage, setBrandingImage] = useState(""); // ✅ Global Branding Image State
+    const [brandingImage, setBrandingImage] = useState(""); 
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [currentReview, setCurrentReview] = useState(null); 
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const ManageReviews = () => {
     const fetchReviews = async () => {
         try {
             const res = await axiosPublic.get('/reviews');
-            // ✅ Backend ab { reviews: [], brandingImage: "" } bhej raha hai
+            
             setReviews(res.data.reviews || []);
             setBrandingImage(res.data.brandingImage || "");
         } catch (err) { 
@@ -40,7 +40,7 @@ const ManageReviews = () => {
         data.append('image', file);
         setLoading(true);
         try {
-            // ✅ Ab ye direct Branding Image wale endpoint par hit karega
+            
             await axiosPrivate.put('/reviews/branding-image', data);
             fetchReviews();
         } catch (err) { 
@@ -81,7 +81,7 @@ const ManageReviews = () => {
     return (
         <div className="min-h-screen text-white font-['Manrope'] pb-20 px-4">
             
-            {/* Global Branding Image Section */}
+            {}
             <div className="flex flex-col md:flex-row items-center justify-between bg-[#111827] border border-white/10 rounded-[2.5rem] p-8 mb-12 gap-6 shadow-2xl">
                 <div className="flex items-center gap-6">
                     <div className="w-24 h-24 rounded-2xl overflow-hidden bg-black/40 border border-white/10 relative group cursor-pointer shadow-xl">

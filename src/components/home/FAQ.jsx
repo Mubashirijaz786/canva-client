@@ -32,7 +32,7 @@ const FAQ = () => {
     const [openIndex, setOpenIndex] = useState(0);
     const [loading, setLoading] = useState(true);
 
-    // ✅ DATABASE SE FETCH KARO
+    
     useEffect(() => {
         const fetchFAQs = async () => {
             try {

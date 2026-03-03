@@ -7,16 +7,16 @@ import PrimaryButton from '../common/PrimaryButton';
 import SecondaryButton from '../common/SecondaryButton';
 
 const FeaturedWork = () => {
-    // ✅ 1. DYNAMIC STATES
+    
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // ✅ 2. FETCH LATEST 3 PROJECTS
+    
     useEffect(() => {
         const fetchFeatured = async () => {
             try {
                 const res = await axiosPublic.get('/projects');
-                // Sirf pehle 3 projects dikhane ke liye slice use kiya
+                
                 setProjects(res.data.slice(0, 3));
             } catch (err) {
                 console.error("Error fetching featured work:", err);
@@ -30,7 +30,7 @@ const FeaturedWork = () => {
     return (
         <section className="relative py-6 lg:py-6 bg-[#020617] overflow-hidden">
             
-            {/* --- HEADER --- */}
+            {}
             <div className="container mx-auto px-6 lg:px-16 max-w-[1500px] relative z-10 text-center mb-16 lg:mb-40">
                 <div className="inline-block border border-white/10 rounded-full px-5 py-2 text-sm font-medium text-gray-400 mb-8 bg-white/5 backdrop-blur-sm">
                     Featured Projects
@@ -40,7 +40,7 @@ const FeaturedWork = () => {
                 </h2>
             </div>
 
-            {/* --- PROJECTS LIST --- */}
+            {}
             <div className="flex flex-col gap-20 lg:gap-24 w-full">
                 {loading ? (
                     <div className="flex justify-center py-20">
@@ -50,7 +50,7 @@ const FeaturedWork = () => {
                     projects.map((project, index) => (
                         <div key={project._id} className="flex flex-col lg:flex-row items-center w-full">
                             
-                            {/* --- TEXT SECTION --- */}
+                            {}
                             <div className="w-full lg:w-[45%] flex flex-col justify-center items-center lg:items-start 
                                 px-6 lg:px-0 
                                 lg:pl-[max(4rem,calc((100vw-1500px)/2+4rem))] 
@@ -58,7 +58,7 @@ const FeaturedWork = () => {
                             >
                                 <div className="max-w-xl text-center lg:text-left">
                                     <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-widest text-black bg-[#FFE5A3] rounded-full mb-6 uppercase">
-                                        {project.category} {/* Backend field is category */}
+                                        {project.category} {}
                                     </span>
                                     
                                     <h3 className="text-3xl lg:text-6xl font-medium text-white leading-[1.1] mb-4 lg:mb-6 tracking-tight">
@@ -66,7 +66,7 @@ const FeaturedWork = () => {
                                     </h3>
                                     
                                     <p className="text-gray-400 text-base lg:text-xl leading-relaxed">
-                                        {project.desc} {/* Backend field is desc */}
+                                        {project.desc} {}
                                     </p>
 
                                     <div className="flex justify-center lg:justify-start mt-8 lg:mt-10">
@@ -83,7 +83,7 @@ const FeaturedWork = () => {
                                 </div>
                             </div>
 
-                            {/* --- IMAGE SECTION --- */}
+                            {}
                             <div className="w-full lg:w-[55%] relative group pl-4 lg:pl-0"> 
                                 <div className="absolute -inset-4 bg-gradient-to-l from-blue-600/10 to-purple-600/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                                 
@@ -105,7 +105,7 @@ const FeaturedWork = () => {
                 )}
             </div>
 
-            {/* --- BOTTOM CTA --- */}
+            {}
             <div className="container mx-auto px-6 lg:px-16 max-w-[1500px] mt-16 lg:mt-28 flex justify-center">
                 <Link to="/Portfolio">
                     <PrimaryButton className="!px-10 !py-5 text-lg">

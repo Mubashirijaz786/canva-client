@@ -7,11 +7,11 @@ const ManageTrustedBy = () => {
         topText: '',
         badgeText: '',
         heading: '',
-        logos: [], // URLs from DB
+        logos: [], 
         sideImage: ''
     });
     
-    // Naye files handle karne ke liye alag states
+    
     const [newLogos, setNewLogos] = useState([]); 
     const [newSideImage, setNewSideImage] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -28,18 +28,18 @@ const ManageTrustedBy = () => {
         fetchData();
     }, []);
 
-    // ✅ Naye logos add karne ka function
+    
     const handleLogoSelect = (e) => {
         const files = Array.from(e.target.files);
         setNewLogos((prev) => [...prev, ...files]);
     };
 
-    // ✅ Kisi bhi logo ko temporary list se remove karna
+    
     const removeNewLogo = (index) => {
         setNewLogos((prev) => prev.filter((_, i) => i !== index));
     };
 
-    // ✅ Database wale purane logos ko remove karna
+    
     const removeExistingLogo = (url) => {
         setData((prev) => ({
             ...prev,
@@ -55,10 +55,10 @@ const ManageTrustedBy = () => {
         formData.append('badgeText', data.badgeText);
         formData.append('heading', data.heading);
 
-        // Purane bache hue logos (string array)
+        
         formData.append('existingLogos', JSON.stringify(data.logos));
 
-        // Nayi files
+        
         if (newSideImage) formData.append('sideImage', newSideImage);
         newLogos.forEach(file => formData.append('logos', file));
 
@@ -78,7 +78,7 @@ const ManageTrustedBy = () => {
 
             <form onSubmit={handleUpdate} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 
-                {/* Text Fields Section */}
+                {}
                 <div className="space-y-6 bg-[#111827] p-8 rounded-[2.5rem] border border-white/10 shadow-2xl">
                     <div className="space-y-2">
                         <label className="text-xs font-black uppercase text-gray-500 ml-2 tracking-widest">Top Slider Text</label>
@@ -101,7 +101,7 @@ const ManageTrustedBy = () => {
                 </div>
 
                 <div className="space-y-8">
-                    {/* Side Image Replacement */}
+                    {}
                     <div className="bg-[#111827] p-8 rounded-[2.5rem] border border-white/10 shadow-2xl">
                         <h3 className="text-lg font-bold mb-4 flex items-center gap-2"><ImageIcon size={20} className="text-blue-400"/> Side Image (Preview)</h3>
                         <div className="flex items-center gap-6">
@@ -114,7 +114,7 @@ const ManageTrustedBy = () => {
                         </div>
                     </div>
 
-                    {/* ✅ LOGOS MANAGEMENT WITH HORIZONTAL SCROLL */}
+                    {}
                     <div className="bg-[#111827] p-8 rounded-[2.5rem] border border-white/10 shadow-2xl">
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="text-lg font-bold">Partner Logos</h3>
@@ -124,9 +124,9 @@ const ManageTrustedBy = () => {
                             </label>
                         </div>
                         
-                        {/* Scroll Container */}
+                        {}
                         <div className="flex gap-4 overflow-x-auto pb-4 custom-scrollbar flex-nowrap items-center">
-                            {/* Purane Logos (From Database) */}
+                            {}
                             {data.logos.map((logo, idx) => (
                                 <div key={`old-${idx}`} className="relative group shrink-0 w-24 h-24 bg-white rounded-xl p-2 flex items-center justify-center shadow-lg border-2 border-transparent hover:border-blue-500 transition-all">
                                     <img src={logo} className="max-h-full object-contain" alt="Logo" />
@@ -136,7 +136,7 @@ const ManageTrustedBy = () => {
                                 </div>
                             ))}
 
-                            {/* Naye selected logos (Pending Upload) */}
+                            {}
                             {newLogos.map((file, idx) => (
                                 <div key={`new-${idx}`} className="relative group shrink-0 w-24 h-24 bg-blue-500/10 border border-blue-500/30 rounded-xl p-2 flex items-center justify-center shadow-lg">
                                     <img src={URL.createObjectURL(file)} className="max-h-full object-contain opacity-60" alt="New Logo" />
@@ -150,7 +150,7 @@ const ManageTrustedBy = () => {
                             ))}
                         </div>
 
-                        {/* Custom Scrollbar Styles */}
+                        {}
                         <style dangerouslySetInnerHTML={{ __html: `
                             .custom-scrollbar::-webkit-scrollbar {
                                 height: 6px;

@@ -7,10 +7,10 @@ const BlogForm = ({
 }) => {
     const sectionsEndRef = useRef(null);
 
-    // ✅ Auto-generate slug and meta title from title
+    
     const handleTitleChange = (e) => {
         const val = e.target.value;
-        // Logic: Title ko lowercase karo, symbols hatao, aur spaces ko dashes (-) se badlo
+        
         const generatedSlug = val.toLowerCase()
                                 .replace(/[^\w ]+/g, '') 
                                 .replace(/ +/g, '-');
@@ -19,7 +19,7 @@ const BlogForm = ({
             ...formData,
             title: val,
             slug: generatedSlug,
-            metaTitle: val // Default meta title title hi rakhte hain
+            metaTitle: val 
         });
     };
 
@@ -69,7 +69,7 @@ const BlogForm = ({
 
             <form onSubmit={handleSubmit} className="space-y-8">
                 
-                {/* --- BASIC INFO SECTION --- */}
+                {}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                         <div className="space-y-2">
@@ -108,7 +108,7 @@ const BlogForm = ({
                     </label>
                 </div>
 
-                {/* --- ✅ SEO & SEARCH OPTIMIZATION SECTION --- */}
+                {}
                 <div className="p-8 bg-blue-600/5 border border-blue-500/20 rounded-[2.5rem] space-y-6">
                     <div className="flex items-center gap-2 text-blue-400">
                         <Search size={18} />
@@ -160,7 +160,7 @@ const BlogForm = ({
                     </div>
                 </div>
 
-                {/* Excerpt & Intro */}
+                {}
                 <div className="space-y-4">
                     <div className="space-y-2">
                         <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Excerpt (Card View Text)</label>
@@ -172,7 +172,7 @@ const BlogForm = ({
                     </div>
                 </div>
 
-                {/* Content Sections Area */}
+                {}
                 <div className="space-y-6 pt-6 border-t border-white/5">
                     <h3 className="text-lg font-black italic text-blue-400">Content Flow</h3>
                     {sections.map((section, index) => (

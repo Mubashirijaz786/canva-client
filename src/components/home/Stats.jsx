@@ -34,17 +34,15 @@ const Stats = () => {
     return (
         <section ref={ref} className="relative w-full">
             
-            {/* Full Width Gradient Background */}
+            {}
             <div className="w-full bg-gradient-to-r from-blue-900 via-blue-700 to-cyan-600 py-16 lg:py-24">
                 
-                {/* Texture Overlay */}
+                {}
                 <div className="absolute inset-0 bg-black/5 mix-blend-overlay pointer-events-none"></div>
 
                 <div className="container mx-auto px-6 lg:px-12 max-w-[1400px]">
                     
-                    {/* GRID SETUP: 
-                        1 col (mobile) -> 2 cols (medium/tablet) -> 4 cols (desktop) 
-                    */}
+                    {}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center lg:text-left">
                         
                         {statsData.map((stat, index) => (
@@ -75,13 +73,13 @@ const Stats = () => {
                                     ${index !== statsData.length - 1 ? 'lg:border-r' : 'lg:border-r-0'}
                                 `}
                             >
-                                {/* Number Display */}
+                                {}
                                 <div className="text-5xl lg:text-7xl font-semibold text-white mb-4 font-['Manrope'] tracking-tight">
                                     <AnimatedCounter end={stat.value} trigger={inView} />
                                     {stat.suffix}
                                 </div>
                                 
-                                {/* Description */}
+                                {}
                                 <p className="text-blue-100/80 text-sm lg:text-base leading-relaxed font-medium max-w-xs mx-auto lg:mx-0">
                                     {stat.description}
                                 </p>

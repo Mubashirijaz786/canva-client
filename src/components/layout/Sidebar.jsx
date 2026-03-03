@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Facebook, Instagram, Linkedin, Loader2 } from 'lucide-react';
-import { axiosPublic } from '../../api/axios'; // ✅ Backend se data mangwane ke liye
+import { axiosPublic } from '../../api/axios'; 
 
-// ✅ Custom Upwork Icon
+
 const UpworkIcon = ({ size, className }) => (
   <img 
     src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/upwork.svg" 
@@ -19,7 +19,7 @@ const UpworkIcon = ({ size, className }) => (
 const Sidebar = () => {
   const [settings, setSettings] = useState(null);
 
-  // --- FETCH SETTINGS FROM BACKEND ---
+  
   useEffect(() => {
     const fetchSettings = async () => {
       try {
@@ -32,10 +32,10 @@ const Sidebar = () => {
     fetchSettings();
   }, []);
 
-  // Jab tak data load na ho, sidebar na dikhao ya khali rakho
+  
   if (!settings) return null;
 
-  // Menu items array jo dynamic links use karega
+  
   const menuItems = [
     { 
       id: 3, 
@@ -61,7 +61,7 @@ const Sidebar = () => {
       icon: UpworkIcon, 
       link: settings.upwork 
     },
-  ].filter(item => item.link); // ✅ Sirf wohi icons dikhao jinka link admin ne dala hai
+  ].filter(item => item.link); 
 
   return (
     <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 p-2 animate-in fade-in slide-in-from-right-4 duration-700">
@@ -73,7 +73,7 @@ const Sidebar = () => {
           rel="noopener noreferrer"
           className="group relative flex items-center justify-end"
         >
-          {/* Sliding Label (Left Side) */}
+          {}
           <span className="
             absolute right-14 
             opacity-0 translate-x-4 
@@ -88,7 +88,7 @@ const Sidebar = () => {
             <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-white rotate-45"></span>
           </span>
 
-          {/* Square Icon Container */}
+          {}
           <div className={`
             w-12 h-12 
             rounded-xl 

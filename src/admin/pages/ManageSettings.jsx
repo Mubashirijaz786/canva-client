@@ -6,7 +6,7 @@ const ManageSettings = () => {
     const [config, setConfig] = useState({
         emails: [''], phones: [''], addresses: [''],
         facebook: '', instagram: '', linkedin: '', upwork: '', copyright: '',
-        calendlyLink: '', whatsappNumber: '' , whatsappMessage: '', // ✅ Added for Global Links
+        calendlyLink: '', whatsappNumber: '' , whatsappMessage: '', 
     });
     const [loading, setLoading] = useState(false);
 
@@ -59,7 +59,7 @@ const ManageSettings = () => {
             
             <form onSubmit={handleSubmit} className="space-y-8">
                 
-                {/* --- ✅ NEW: GLOBAL LINKS SECTION (Calendly & WhatsApp) --- */}
+                {}
                 <div className="bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-white/10 p-8 rounded-[2.5rem] space-y-6 shadow-2xl relative overflow-hidden">
                     <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
                         <Share2 size={120} />
@@ -110,7 +110,7 @@ const ManageSettings = () => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Multi-Contact Section */}
+                    {}
                     <div className="p-8 bg-white/[0.03] border border-white/10 rounded-[2.5rem] space-y-6">
                         <h3 className="flex items-center gap-2 text-blue-400 font-bold uppercase text-xs tracking-widest"><Phone size={16}/> Business Contacts</h3>
                         
@@ -148,7 +148,7 @@ const ManageSettings = () => {
                         </div>
                     </div>
 
-                    {/* Socials Section */}
+                    {}
                     <div className="p-8 bg-white/[0.03] border border-white/10 rounded-[2.5rem] space-y-4">
                         <h3 className="flex items-center gap-2 text-purple-400 font-bold uppercase text-xs tracking-widest"><Share2 size={16}/> Social Presence</h3>
                         <div className="space-y-4">

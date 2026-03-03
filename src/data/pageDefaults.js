@@ -35,7 +35,7 @@ export const PAGE_DEFAULTS = {
             { question: "What is content writing, and why should we care?", answer: "Content writing refers to creating original written content for articles, blogs..." }
         ]
     },
-   // Is data ko PAGE_DEFAULTS object ke andar 'seo' key mein add karein
+   
 "seo": {
     badgeText: "Search Engine Optimization",
     heroTitle: "Dominate Search.",
@@ -45,11 +45,11 @@ export const PAGE_DEFAULTS = {
     metaDescription: "Professional SEO services to increase your organic traffic and revenue. Data-driven strategies for keyword dominance.",
     metaKeywords: "seo, search engine optimization, google ranking, digital marketing",
 
-    // Level-2 dynamic text
+    
     offeringsTitle: "The 360° SEO Ecosystem",
     offeringsSubtitle: "SEO isn't just about keywords. It's about technical health, user experience, and authority. We cover it all.",
     
-    // Main Service Cards
+    
     contentItems: [
         { title: "Comprehensive SEO Audits", description: "We dive deep into your site's architecture to find technical errors holding you back.", iconName: "Search" },
         { title: "Keyword Dominance", description: "We identify high-intent keywords that your customers are actually searching for.", iconName: "Target" },
@@ -59,7 +59,7 @@ export const PAGE_DEFAULTS = {
         { title: "Technical SEO", description: "Fixing Core Web Vitals, schema markup, and mobile usability issues.", iconName: "Globe" }
     ],
 
-    // Methodology / Checklist Section
+    
     checklistTitle: "Our 4-Step Methodology",
     checklist: [
         "01. Audit & Discovery: Deep dive into site health and competitors.",
@@ -68,7 +68,7 @@ export const PAGE_DEFAULTS = {
         "04. Authority Building: Digital PR and outreach for powerful links."
     ],
 
-    // Why Campaigns Fail (Reasons)
+    
     reasonsTitle: "Why Most SEO Campaigns Fail",
     reasons: [
         { title: "Vanity Metrics", description: "Ranking for keywords that don't bring sales is useless. We focus on ROI." },
@@ -93,7 +93,7 @@ export const PAGE_DEFAULTS = {
     metaDescription: "Professional e-commerce development services. We build high-converting Shopify, WooCommerce, and Custom MERN stores.",
     metaKeywords: "e-commerce development, shopify store builder, woocommerce, online shop development",
 
-    // Offerings Grid
+    
     offeringsTitle: "Complete E-Commerce Ecosystem",
     offeringsSubtitle: "We don't just build websites; we build complete sales engines. From inventory to checkout, we optimize every pixel.",
     contentItems: [
@@ -105,7 +105,7 @@ export const PAGE_DEFAULTS = {
         { title: "Advanced Security", description: "SSL, DDoS protection, and secure checkout to protect sensitive customer data.", iconName: "ShieldCheck" }
     ],
 
-    // Why Standard Themes Fail (Reasons)
+    
     reasonsTitle: "Why Standard Themes Fail",
     reasons: [
         { title: "Slow Loading Speeds", description: "Bloated code in standard themes kills your SEO and frustrates users." },
@@ -113,7 +113,7 @@ export const PAGE_DEFAULTS = {
         { title: "Poor Mobile UX", description: "Clunky checkouts on mobile lead to 80% cart abandonment rates." }
     ],
 
-    // Edge Section (Checklist)
+    
     checklistTitle: "The Canva Solutions Edge",
     checklist: [
         "Sub-second Load Times",
@@ -140,7 +140,7 @@ export const PAGE_DEFAULTS = {
     metaDescription: "Tailor-made software solutions for your business. We build scalable ERP, CRM, and SaaS products with modern tech stacks.",
     metaKeywords: "custom software, erp development, crm solutions, saas development, enterprise software",
 
-    // Section 3: Solving Complex Problems (Offerings)
+    
     offeringsTitle: "Solving Complex Problems",
     offeringsSubtitle: "We don't just write code; we engineer solutions that streamline operations, reduce costs, and give you a competitive advantage.",
     contentItems: [
@@ -152,7 +152,7 @@ export const PAGE_DEFAULTS = {
         { title: "Secure Fintech Solutions", description: "Bank-grade security software. We build financial tools compliant with GDPR, PCI-DSS, and other regulatory standards.", iconName: "Lock" }
     ],
 
-    // ✅ Methodology data ab 'reasons' array mein jayega (Title aur Description ke saath)
+    
     reasonsTitle: "SDLC Methodology",
     reasons: [
         { title: "Discovery & Specs", description: "We document every requirement, user role, and data flow before coding begins." },
@@ -161,7 +161,7 @@ export const PAGE_DEFAULTS = {
         { title: "QA & Deployment", description: "Automated unit testing, load testing, and secure deployment to production." }
     ],
 
-    // ✅ "Why Custom Software" points ab 'checklist' array mein jayenge
+    
     checklistTitle: "Why Custom Software?",
     checklist: [
         "No monthly licensing fees (You own it)",
@@ -187,7 +187,7 @@ export const PAGE_DEFAULTS = {
     metaDescription: "Elevate your brand with expert graphic design. We offer logo branding, UI/UX, social media graphics, and packaging design.",
     metaKeywords: "graphic design, logo design, ui ux design, branding agency, packaging design",
 
-    // Offerings Grid
+    
     offeringsTitle: "Design Solutions for Every Need",
     offeringsSubtitle: "Whether you're launching a new brand or refreshing an old one, we have the creative skills to bring your vision to life.",
     contentItems: [
@@ -199,7 +199,7 @@ export const PAGE_DEFAULTS = {
         { title: "Illustrations & Vector Art", description: "Custom flat illustrations, icons, and infographics to add character to your brand.", iconName: "PenTool" }
     ],
 
-    // ✅ Left Side: Creative Process (Reasons Array)
+    
     reasonsTitle: "From Concept to Creation",
     reasons: [
         { title: "Discovery Phase", description: "We research your audience, competitors, and brand values to find your unique angle." },
@@ -208,7 +208,7 @@ export const PAGE_DEFAULTS = {
         { title: "Final Delivery", description: "You receive all source files (AI, PSD, SVG, PNG) ready for print and web." }
     ],
 
-    // ✅ Right Side: Glow Box (Checklist Array)
+    
     checklistTitle: "Why Professional Design Matters",
     checklist: [
         "First impressions are 94% design-related",
@@ -234,7 +234,7 @@ export const PAGE_DEFAULTS = {
     metaDescription: "Expert mobile app development for iOS and Android. We build native and cross-platform apps using Flutter and React Native.",
     metaKeywords: "mobile app development, ios app builder, android app development, flutter development, react native",
 
-    // Offerings Grid
+    
     offeringsTitle: "End-to-End Mobile Solutions",
     offeringsSubtitle: "We handle the entire lifecycle of your app, from the first line of code to the final App Store submission and beyond.",
     contentItems: [
@@ -246,7 +246,7 @@ export const PAGE_DEFAULTS = {
         { title: "IoT & Wearables", description: "Connecting mobile apps to smart devices and IoT hardware for a fully integrated ecosystem.", iconName: "Globe" }
     ],
 
-    // ✅ Left Side: Process (Reasons Array)
+    
     reasonsTitle: "How We Build World-Class Apps",
     reasons: [
         { title: "Strategy & Prototyping", description: "We validate your idea and build clickable prototypes to test user flows." },
@@ -255,7 +255,7 @@ export const PAGE_DEFAULTS = {
         { title: "Launch & Growth", description: "We handle the App Store submission and help you monitor performance analytics." }
     ],
 
-    // ✅ Right Side: Glow Box (Checklist Array)
+    
     checklistTitle: "Why Native/Cross-Platform?",
     checklist: [
         "Access to device features (Camera, GPS)",
@@ -281,7 +281,7 @@ export const PAGE_DEFAULTS = {
     metaDescription: "Professional web development using React, Next.js, and Node.js. Scalable SaaS and custom websites built for performance.",
     metaKeywords: "web development, custom website, mern stack, nextjs development, react developer",
 
-    // Offerings Grid
+    
     offeringsTitle: "Full-Cycle Web Solutions",
     offeringsSubtitle: "Whether you need a simple landing page or a complex enterprise platform, we have the architectural expertise to deliver.",
     contentItems: [
@@ -293,7 +293,7 @@ export const PAGE_DEFAULTS = {
         { title: "Progressive Web Apps (PWA)", description: "Websites that behave like mobile apps with offline capabilities and push notifications.", iconName: "Globe" }
     ],
 
-    // ✅ Left Side: Process (Reasons Array)
+    
     reasonsTitle: "The Development Lifecycle",
     reasons: [
         { title: "Planning & Architecture", description: "We map out the database schema, API structure, and user flows before writing code." },
@@ -302,7 +302,7 @@ export const PAGE_DEFAULTS = {
         { title: "Testing & Deployment", description: "Rigorous QA testing followed by seamless deployment to cloud servers (AWS/Vercel)." }
     ],
 
-    // ✅ Right Side: Glow Box (Checklist Array)
+    
     checklistTitle: "Why Choose Modern Tech?",
     checklist: [
         "Faster page load speeds (SEO friendly)",
@@ -328,7 +328,7 @@ export const PAGE_DEFAULTS = {
     metaDescription: "Professional SMM services. We handle content creation, community management, and paid ads on Instagram, LinkedIn, and TikTok.",
     metaKeywords: "social media management, smm agency, instagram growth, facebook ads, tiktok marketing",
 
-    // Offerings Grid
+    
     offeringsTitle: "Full-Service Social Management",
     offeringsSubtitle: "We act as your in-house social team, handling everything from creative concepting to community management.",
     contentItems: [
@@ -340,7 +340,7 @@ export const PAGE_DEFAULTS = {
         { title: "Analytics & Reporting", description: "No vanity metrics. Monthly reports on engagement, reach, and conversion to prove ROI.", iconName: "BarChart" }
     ],
 
-    // ✅ Left Side: The "Viral" Formula (Reasons Array)
+    
     reasonsTitle: "The Viral Formula",
     reasons: [
         { title: "Audit & Strategy", description: "We identify where your audience lives and what content they crave." },
@@ -349,7 +349,7 @@ export const PAGE_DEFAULTS = {
         { title: "Optimize & Scale", description: "We double down on what works based on real-time data." }
     ],
 
-    // ✅ Right Side: Glow Box (Checklist Array)
+    
     checklistTitle: "Why Consistency Matters",
     checklist: [
         "Algorithms favor frequent posting",

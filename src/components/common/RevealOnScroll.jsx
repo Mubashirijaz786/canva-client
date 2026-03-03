@@ -3,14 +3,14 @@ import { useInView } from 'react-intersection-observer';
 
 const RevealOnScroll = ({ children, threshold = 0.1, delay = 0 }) => {
     const { ref, inView } = useInView({
-        triggerOnce: true, // Only animate once
-        threshold: threshold, // Start when 10% of the component is visible
+        triggerOnce: true, 
+        threshold: threshold, 
     });
 
     return (
         <div
             ref={ref}
-            // Tailwind classes for the transition
+            
             className={`
                 transition-all duration-1000 ease-out transform
                 ${inView 

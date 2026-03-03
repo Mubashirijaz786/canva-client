@@ -10,11 +10,11 @@ import MetaData from '../common/MetaData';
 import DynamicIcon from '../common/DynamicIcon';
 import { useGlobalSettings } from '../../hooks/useGlobalSettings';
 
-// ✅ IMPORT LOCAL IMAGE
+
 import webHero from '../../assets/images/web.webp';
 
 const WebDevelopment = () => {
-    const { calendlyLink } = useGlobalSettings(); // ✅ Global dynamic link
+    const { calendlyLink } = useGlobalSettings(); 
     const [pageData, setPageData] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -54,7 +54,7 @@ const WebDevelopment = () => {
                 keywords={d('metaKeywords')}
             />
             
-            {/* --- 1. HERO SECTION --- */}
+            {}
             <section className="relative pt-24 pb-32 px-6 lg:px-16 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-600/5 blur-[150px] pointer-events-none"></div>
                 <div className="container mx-auto max-w-[1400px] relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -110,7 +110,7 @@ const WebDevelopment = () => {
                 </div>
             </section>
 
-            {/* --- 2. TECH STACK --- */}
+            {}
             <section className="py-16 bg-[#0f172a] border-y border-white/5">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1400px]">
                     <p className="text-center text-gray-400 font-medium mb-8">POWERED BY NEXT-GEN TECHNOLOGY</p>
@@ -125,7 +125,7 @@ const WebDevelopment = () => {
                 </div>
             </section>
 
-            {/* --- 3. OFFERINGS --- */}
+            {}
             <section className="py-32 px-6 lg:px-16">
                 <div className="container mx-auto max-w-[1400px]">
                     <div className="text-center mb-20">
@@ -146,12 +146,12 @@ const WebDevelopment = () => {
                 </div>
             </section>
 
-            {/* --- 4. PROCESS SECTION --- */}
+            {}
             <section className="py-24 bg-gradient-to-b from-[#020617] to-[#0f172a] relative overflow-hidden">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1200px] relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         
-                        {/* LEFT SIDE: Lifecycle (Using 'reasons' array for Title/Desc) */}
+                        {}
                         <div>
                             <h2 className="text-4xl font-bold text-white mb-8">{d('reasonsTitle')}</h2>
                             <div className="space-y-6">
@@ -172,7 +172,7 @@ const WebDevelopment = () => {
                             </div>
                         </div>
 
-                        {/* RIGHT SIDE: Glow Box (Using 'checklist' array for simple points) */}
+                        {}
                         <div className="relative">
                             <div className="absolute inset-0 bg-blue-500/20 blur-[80px]"></div>
                             <div className="relative p-8 rounded-3xl bg-[#020617] border border-blue-500/30 shadow-2xl">
@@ -196,7 +196,7 @@ const WebDevelopment = () => {
                 </div>
             </section>
 
-            {/* --- 5. FAQ SECTION --- */}
+            {}
             <section className="py-24 px-6 lg:px-16 pb-32">
                 <div className="container mx-auto max-w-[1000px]">
                     <h2 className="text-3xl font-bold text-white mb-12 text-center">Frequently Asked Questions</h2>

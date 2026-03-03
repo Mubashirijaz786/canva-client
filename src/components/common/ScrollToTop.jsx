@@ -6,23 +6,23 @@ const ScrollToTop = () => {
     const sectionOffsetRef = useRef(null);
 
     useEffect(() => {
-        // Cache the offset position once (avoid repeated reflow queries)
+        
         const trustedSection = document.getElementById('trusted-section');
         if (trustedSection) {
             sectionOffsetRef.current = trustedSection.offsetTop - 100;
         } else {
-            sectionOffsetRef.current = 500; // Fallback
+            sectionOffsetRef.current = 500; 
         }
-    }, []); // Only run once on mount
+    }, []); 
 
     useEffect(() => {
         const toggleVisibility = () => {
-            // Use cached offset, only compare scroll position
+            
             const threshold = sectionOffsetRef.current || 500;
             setIsVisible(window.scrollY > threshold);
         };
 
-        // Use passive listener for better scroll performance
+        
         window.addEventListener('scroll', toggleVisibility, { passive: true });
 
         return () => window.removeEventListener('scroll', toggleVisibility);

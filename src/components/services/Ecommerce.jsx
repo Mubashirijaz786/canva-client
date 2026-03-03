@@ -7,7 +7,7 @@ import { PAGE_DEFAULTS } from '../../data/pageDefaults';
 import ServiceLayout from '../../components/services/ServiceLayout';
 import PrimaryButton from '../../components/common/PrimaryButton';
 import MetaData from '../../components/common/MetaData';
-import DynamicIcon from '../../components/common/DynamicIcon'; // ✅ Global Icon Helper
+import DynamicIcon from '../../components/common/DynamicIcon'; 
 import ecommerceHero from '../../assets/images/E-commerce.webp'; 
 import { useGlobalSettings } from '../../hooks/useGlobalSettings';
 
@@ -51,7 +51,7 @@ const Ecommerce = () => {
                 keywords={d('metaKeywords')}
             />
             
-            {/* --- 1. HERO SECTION --- */}
+            {}
             <section className="relative pt-24 pb-32 px-6 lg:px-16 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-blue-600/5 blur-[150px] pointer-events-none"></div>
                 <div className="container mx-auto max-w-[1400px] relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -94,7 +94,7 @@ const Ecommerce = () => {
                 </div>
             </section>
 
-            {/* --- 2. PLATFORMS SECTION --- */}
+            {}
             <section className="py-16 bg-[#0f172a] border-y border-white/5">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1400px]">
                     <p className="text-center text-gray-400 font-medium mb-8 uppercase tracking-widest">Powering Stores on Top Platforms</p>
@@ -110,7 +110,7 @@ const Ecommerce = () => {
                 </div>
             </section>
 
-            {/* --- 3. OFFERINGS --- */}
+            {}
             <section className="py-32 px-6 lg:px-16">
                 <div className="container mx-auto max-w-[1400px]">
                     <div className="text-center mb-20">
@@ -131,7 +131,7 @@ const Ecommerce = () => {
                 </div>
             </section>
 
-            {/* --- 4. PROBLEM vs SOLUTION --- */}
+            {}
             <section className="py-24 bg-gradient-to-b from-[#020617] to-[#0f172a] relative overflow-hidden">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1200px] relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -171,7 +171,7 @@ const Ecommerce = () => {
                 </div>
             </section>
 
-            {/* --- 5. FAQ SECTION --- */}
+            {}
             <section className="py-24 px-6 lg:px-16 pb-32">
                 <div className="container mx-auto max-w-[1000px]">
                     <h2 className="text-3xl font-bold text-white mb-12 text-center">Frequently Asked Questions</h2>

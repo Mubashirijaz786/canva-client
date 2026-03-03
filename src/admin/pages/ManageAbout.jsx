@@ -66,7 +66,7 @@ const ManageAbout = () => {
             
             <form onSubmit={handleSubmit} className="space-y-10">
                 
-                {/* 1. HERO SECTION */}
+                {}
                 <div className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] space-y-6 shadow-xl">
                     <h3 className="text-blue-400 font-bold uppercase text-xs tracking-widest">Hero Configuration</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -81,7 +81,7 @@ const ManageAbout = () => {
                     </div>
                 </div>
 
-                {/* 2. STATS SECTION */}
+                {}
                 <div className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] space-y-6 shadow-xl">
                     <h3 className="text-green-400 font-bold uppercase text-xs tracking-widest flex items-center gap-2"><BarChart size={16}/> Business Stats</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -113,7 +113,7 @@ const ManageAbout = () => {
 </button>
                 </div>
 
-                {/* 3. FOUNDER DETAILS */}
+                {}
                 <div className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] space-y-8 shadow-xl">
                     <h3 className="text-purple-400 font-bold uppercase text-xs tracking-widest">Founder Details</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-white/5 pb-8">
@@ -145,7 +145,7 @@ const ManageAbout = () => {
                     </div>
                 </div>
 
-                {/* 4. CORE VALUES SECTION */}
+                {}
                 <div className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] space-y-6 shadow-xl">
                     <h3 className="text-rose-400 font-bold uppercase text-xs tracking-widest flex items-center gap-2"><Heart size={16}/> Core Values</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

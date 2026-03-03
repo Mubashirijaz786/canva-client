@@ -21,10 +21,10 @@ const ManageBlogs = () => {
         author: 'Admin', 
         readTime: '', 
         intro: '',
-        slug: '', // URL Slug
-        metaTitle: '', // SEO Title
-        metaDescription: '', // SEO Description
-        metaKeywords: '', // SEO Keywords
+        slug: '', 
+        metaTitle: '', 
+        metaDescription: '', 
+        metaKeywords: '', 
         date: new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })
     });
 
@@ -49,7 +49,7 @@ const ManageBlogs = () => {
         setIsModalOpen(false);
     };
 
-    // ✅ Load blog data including SEO fields for editing
+    
     const handleEditClick = (blog) => {
         setEditingId(blog._id);
         setFormData({
@@ -60,10 +60,10 @@ const ManageBlogs = () => {
             readTime: blog.readTime,
             intro: blog.intro,
             date: blog.date,
-            slug: blog.slug || '', // Load SEO Slug
-            metaTitle: blog.metaTitle || '', // Load SEO Title
-            metaDescription: blog.metaDescription || '', // Load SEO Desc
-            metaKeywords: blog.metaKeywords || '' // Load SEO Keywords
+            slug: blog.slug || '', 
+            metaTitle: blog.metaTitle || '', 
+            metaDescription: blog.metaDescription || '', 
+            metaKeywords: blog.metaKeywords || '' 
         });
 
         const mappedSections = blog.sections.map(s => ({
@@ -82,7 +82,7 @@ const ManageBlogs = () => {
         const data = new FormData();
 
         try {
-            // ✅ Append all basic and SEO fields to FormData
+            
             const fieldsToAppend = [
                 'title', 'excerpt', 'category', 'author', 'readTime', 
                 'date', 'intro', 'slug', 'metaTitle', 'metaDescription', 'metaKeywords'
@@ -102,11 +102,11 @@ const ManageBlogs = () => {
             });
 
             if (editingId) {
-                // UPDATE logic
+                
                 await axiosPrivate.put(`/blogs/${editingId}`, data);
                 alert("✅ Article & SEO Updated Successfully!");
             } else {
-                // CREATE logic
+                
                 await axiosPrivate.post('/blogs', data);
                 alert("✅ New Blog Published with SEO Settings!");
             }

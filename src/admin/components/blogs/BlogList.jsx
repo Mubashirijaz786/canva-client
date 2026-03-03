@@ -14,7 +14,7 @@ const BlogList = ({ blogs, deleteBlog, handleEditClick }) => {
                         key={blog._id} 
                         className="bg-white/[0.03] border border-white/10 p-6 rounded-[2.5rem] flex gap-6 items-center group relative backdrop-blur-sm hover:border-blue-500/30 transition-all duration-500"
                     >
-                        {/* Blog Thumbnail */}
+                        {}
                         <div className="relative shrink-0 overflow-hidden rounded-3xl w-32 h-32 shadow-2xl">
                             <img 
                                 src={blog.image} 
@@ -23,7 +23,7 @@ const BlogList = ({ blogs, deleteBlog, handleEditClick }) => {
                             />
                         </div>
 
-                        {/* Blog Info */}
+                        {}
                         <div className="flex-grow min-w-0">
                             <div className="flex items-center gap-2 mb-2 text-blue-400 text-[10px] font-black uppercase tracking-widest">
                                 <Tag size={12}/> {blog.category}
@@ -37,10 +37,10 @@ const BlogList = ({ blogs, deleteBlog, handleEditClick }) => {
                             </div>
                         </div>
 
-                        {/* Action Buttons */}
+                        {}
                         <div className="absolute top-6 right-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                             
-                            {/* ✅ FIXED: Use blog.slug instead of blog._id for SEO Friendly Link */}
+                            {}
                             <Link 
                                 target="_blank" 
                                 to={`/blog/${blog.slug}`} 
@@ -50,7 +50,7 @@ const BlogList = ({ blogs, deleteBlog, handleEditClick }) => {
                                 <ExternalLink size={18} />
                             </Link>
                             
-                            {/* Edit Button */}
+                            {}
                             <button 
                                 onClick={() => handleEditClick(blog)} 
                                 className="p-2.5 text-blue-400 bg-blue-400/5 hover:bg-blue-400 hover:text-white rounded-xl transition-all"
@@ -59,7 +59,7 @@ const BlogList = ({ blogs, deleteBlog, handleEditClick }) => {
                                 <Edit3 size={18} />
                             </button>
 
-                            {/* Delete Button (Superadmin Only) */}
+                            {}
                             {adminAuth?.role === 'superadmin' && (
                                 <button 
                                     onClick={() => deleteBlog(blog._id)} 
