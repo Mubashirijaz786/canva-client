@@ -64,6 +64,7 @@ const Inquiries = () => {
 
     return (
         <div className="space-y-8 pb-20 font-['Manrope'] selection:bg-blue-500/30">
+            {/* --- HEADER --- */}
             <div className="flex items-center gap-4">
                 <div className="p-3 bg-blue-600/10 rounded-2xl text-blue-500">
                     <Inbox size={32} />
@@ -74,6 +75,7 @@ const Inquiries = () => {
                 </div>
             </div>
 
+            {/* --- MESSAGES LIST --- */}
             <div className="grid grid-cols-1 gap-4">
                 {messages.length > 0 ? messages.map((msg) => (
                     <div 
@@ -91,26 +93,23 @@ const Inquiries = () => {
                         {msg.status === 'resolved' && <div className="absolute left-0 top-0 h-full w-1.5 bg-green-500"></div>}
 
                         <div className="flex items-center gap-5">
-                            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-xl transition-all duration-500 ${
+                            <div className={`w-14 h-14 rounded-2xl flex-shrink-0 flex items-center justify-center font-black text-xl transition-all duration-500 ${
                                 msg.status === 'unread' ? "bg-blue-600 text-white" : 
                                 msg.status === 'resolved' ? "bg-green-600 text-white" : "bg-white/10 text-gray-500"
                             }`}>
                                 {msg.status === 'resolved' ? <CheckCircle size={24}/> : msg.name.charAt(0).toUpperCase()}
                             </div>
-                            <div>
+                            <div className="min-w-0">
                                 <div className="flex items-center gap-3 mb-1">
-                                    <h3 className={`font-black text-lg tracking-tight ${msg.status === 'unread' ? "text-blue-400" : msg.status === 'resolved' ? "text-green-400" : "text-white"}`}>
+                                    <h3 className={`font-black text-lg tracking-tight truncate ${msg.status === 'unread' ? "text-blue-400" : msg.status === 'resolved' ? "text-green-400" : "text-white"}`}>
                                         {msg.name}
                                     </h3>
                                     {msg.status === 'unread' && (
                                         <span className="bg-blue-500 text-white text-[8px] px-2 py-0.5 rounded-full font-black uppercase tracking-widest animate-pulse">New Lead</span>
                                     )}
-                                    {}
-                                    {msg.attachmentUrl && (
-                                        <Paperclip size={14} className="text-green-500" />
-                                    )}
+                                    {msg.attachmentUrl && <Paperclip size={14} className="text-green-500 flex-shrink-0" />}
                                 </div>
-                                <p className="text-gray-500 text-xs font-medium">{msg.email}</p>
+                                <p className="text-gray-500 text-xs font-medium truncate">{msg.email}</p>
                             </div>
                         </div>
                         
@@ -146,13 +145,14 @@ const Inquiries = () => {
                 )}
             </div>
 
-            {}
+            {/* --- MODAL (FIXED SCROLLER ISSUE) --- */}
             {selectedMsg && (
                 <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 backdrop-blur-2xl bg-black/80">
-                    <div className="bg-[#0f172a] border border-white/10 w-full max-w-2xl rounded-[3rem] p-10 relative animate-in zoom-in duration-300 shadow-2xl overflow-y-auto max-h-[90vh]">
+                    <div className="bg-[#0f172a] border border-white/10 w-full max-w-2xl rounded-[3rem] p-6 md:p-10 relative animate-in zoom-in duration-300 shadow-2xl overflow-y-auto overflow-x-hidden max-h-[90vh]">
+                        
                         <div className="absolute -top-20 -right-20 p-40 bg-blue-600/10 blur-[100px] -z-10 rounded-full"></div>
                         
-                        <div className="absolute top-8 right-8 flex items-center gap-3">
+                        <div className="absolute top-6 right-6 md:top-8 md:right-8 flex items-center gap-3">
                             <button 
                                 onClick={() => updateInquiryStatus(selectedMsg._id, selectedMsg.status === 'resolved' ? 'read' : 'resolved')}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${selectedMsg.status === 'resolved' ? "bg-yellow-500/10 text-yellow-500" : "bg-green-500 text-white shadow-lg shadow-green-900/20"}`}
@@ -160,16 +160,16 @@ const Inquiries = () => {
                                 {selectedMsg.status === 'resolved' ? <><RotateCcw size={14}/> Re-open</> : <><CheckCircle size={14}/> Resolve</>}
                             </button>
                             <button onClick={() => setSelectedMsg(null)} className="p-2 text-gray-500 hover:text-white transition-colors bg-white/5 rounded-xl">
-                                <X size={28} />
+                                <X size={24} />
                             </button>
                         </div>
 
-                        <div className="flex items-center gap-6 mb-10 border-b border-white/5 pb-10 mt-6 md:mt-0">
-                            <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center text-3xl font-black text-white shadow-2xl transition-colors duration-500 ${selectedMsg.status === 'resolved' ? 'bg-green-600' : 'bg-blue-600'}`}>
+                        <div className="flex items-center gap-6 mb-10 border-b border-white/5 pb-10 mt-12 md:mt-0">
+                            <div className={`w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center text-2xl md:text-3xl font-black text-white shadow-2xl transition-colors duration-500 ${selectedMsg.status === 'resolved' ? 'bg-green-600' : 'bg-blue-600'}`}>
                                 {selectedMsg.name.charAt(0).toUpperCase()}
                             </div>
-                            <div>
-                                <h2 className="text-3xl font-black text-white tracking-tighter italic uppercase">{selectedMsg.name}</h2>
+                            <div className="min-w-0">
+                                <h2 className="text-2xl md:text-3xl font-black text-white tracking-tighter italic uppercase truncate">{selectedMsg.name}</h2>
                                 <p className="text-blue-400 font-black text-[10px] uppercase tracking-[0.3em] mt-2 flex items-center gap-2">
                                     <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                                     {selectedMsg.service || "General Inquiry"}
@@ -178,9 +178,9 @@ const Inquiries = () => {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+                            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 min-w-0">
                                 <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2"><Mail size={12} className="text-blue-500"/> Client Email</p>
-                                <p className="text-white font-bold text-sm truncate">{selectedMsg.email}</p>
+                                <p className="text-white font-bold text-sm break-all">{selectedMsg.email}</p>
                             </div>
                             <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
                                 <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest mb-1 flex items-center gap-2"><Phone size={12} className="text-green-500"/> Phone</p>
@@ -198,16 +198,15 @@ const Inquiries = () => {
                             )}
                         </div>
 
-                        {}
                         {selectedMsg.attachmentUrl && (
-                            <div className="mb-8 p-6 rounded-[2rem] bg-green-500/5 border border-green-500/20 flex items-center justify-between group/file">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500">
+                            <div className="mb-8 p-6 rounded-[2rem] bg-green-500/5 border border-green-500/20 flex flex-col sm:flex-row items-center justify-between gap-4 group/file">
+                                <div className="flex items-center gap-4 min-w-0 w-full">
+                                    <div className="w-12 h-12 flex-shrink-0 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500">
                                         <Paperclip size={24} />
                                     </div>
-                                    <div>
+                                    <div className="min-w-0">
                                         <p className="text-[10px] font-black text-green-500/60 uppercase tracking-widest mb-0.5">Attachment Found</p>
-                                        <h4 className="text-white font-bold text-sm truncate max-w-[200px]">
+                                        <h4 className="text-white font-bold text-sm truncate">
                                             {selectedMsg.attachmentName || "Project_File.ext"}
                                         </h4>
                                     </div>
@@ -216,7 +215,7 @@ const Inquiries = () => {
                                     href={selectedMsg.attachmentUrl} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-green-900/20"
+                                    className="flex-shrink-0 flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-5 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-green-900/20"
                                 >
                                     <ExternalLink size={14} />
                                     View File
@@ -224,9 +223,9 @@ const Inquiries = () => {
                             </div>
                         )}
 
-                        <div className="bg-white/[0.04] p-8 rounded-[2.5rem] border border-white/5 relative">
-                            <div className="absolute -top-3 left-8 bg-[#020617] px-4 py-0.5 rounded-full border border-white/10 text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">Message Content</div>
-                            <p className="text-gray-200 leading-relaxed text-lg font-light italic">"{selectedMsg.message}"</p>
+                        <div className="bg-white/[0.04] p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border border-white/5 relative">
+                            <div className="absolute -top-3 left-8 bg-[#0f172a] px-4 py-0.5 rounded-full border border-white/10 text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">Message Content</div>
+                            <p className="text-gray-200 leading-relaxed text-base md:text-lg font-light italic break-words">"{selectedMsg.message}"</p>
                         </div>
                     </div>
                 </div>

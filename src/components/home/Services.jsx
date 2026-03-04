@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../common/PrimaryButton'; 
 import InfiniteMarquee from '../common/InfiniteMarquee'; 
-import { servicesData } from '../../data/servicesData';
+import {servicesData} from '../../data/servicesData';
 
 const Services = () => {
 
