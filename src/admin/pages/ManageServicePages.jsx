@@ -24,11 +24,10 @@ const ManageServicePages = () => {
 
     const [formData, setFormData] = useState({
         heroTitle: '', heroSubtitle: '', heroDescription: '', heroImage: null,
-        badgeText: '', 
+        badgeText: '', slug: '', // ✅ Added slug here
         metaTitle: '', metaDescription: '', metaKeywords: '',
         contentItems: [], faqs: [], checklist: [], reasons: []
     });
-
 
     const handleEditClick = async (pageId) => {
         setSelectedPage(pageId);
@@ -39,14 +38,14 @@ const ManageServicePages = () => {
             if (res.data && Object.keys(res.data).length > 0) {
                 setFormData({
                     ...res.data,
-                    heroImage: res.data.heroImage || null
+                    heroImage: res.data.heroImage || null,
+                    slug: res.data.slug || pageId // ✅ Fallback to pageId if slug missing
                 });
             } else {
-                setFormData({ ...PAGE_DEFAULTS[pageId], heroImage: null });
+                setFormData({ ...PAGE_DEFAULTS[pageId], heroImage: null, slug: pageId });
             }
         } catch (err) {
-            console.log("Starting with default constants.");
-            setFormData({ ...PAGE_DEFAULTS[pageId], heroImage: null });
+            setFormData({ ...PAGE_DEFAULTS[pageId], heroImage: null, slug: pageId });
         } finally {
             setFetching(false);
         }
@@ -57,7 +56,8 @@ const ManageServicePages = () => {
         if (defaults && window.confirm(`⚠️ Are you sure? This will overwrite everything with the original static data for ${selectedPage}!`)) {
             setFormData({
                 ...defaults,
-                heroImage: null 
+                heroImage: null,
+                slug: selectedPage 
             });
         }
     };
@@ -73,7 +73,7 @@ const ManageServicePages = () => {
                 } else if (Array.isArray(formData[key])) {
                     data.append(key, JSON.stringify(formData[key]));
                 } else {
-                    data.append(key, formData[key]);
+                    data.append(key, formData[key] || '');
                 }
             });
 
@@ -92,7 +92,6 @@ const ManageServicePages = () => {
 
     return (
         <div className="p-6 font-['Manrope'] text-white space-y-8 animate-in fade-in duration-500">
-            {}
             <div className="flex justify-between items-center bg-[#0f172a] p-8 rounded-[2rem] border border-white/10 shadow-2xl">
                 <div>
                     <h1 className="text-3xl font-black italic tracking-tighter text-white">Services CMS</h1>
@@ -106,7 +105,6 @@ const ManageServicePages = () => {
             {isModalOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-10">
                     <div className="absolute inset-0 bg-[#020617]/90 backdrop-blur-md" onClick={() => !loading && setIsModalOpen(false)}></div>
-                    
                     <div className="relative bg-[#0f172a] w-full max-w-7xl max-h-[95vh] rounded-[3.5rem] border border-white/10 shadow-2xl overflow-hidden flex flex-col">
                         <div className="p-8 border-b border-white/10 flex justify-between items-center bg-white/5">
                             <div>
@@ -128,15 +126,9 @@ const ManageServicePages = () => {
                             )}
                         </div>
                         <div className="p-8 border-t border-white/10 bg-white/5 flex justify-between items-center">
-                            <button 
-                            
-                                type="button"
-                                onClick={resetToDefault}
-                                className="flex items-center gap-2 px-6 py-3 font-bold text-red-400 border border-red-500/20 rounded-2xl hover:bg-red-500/10 transition-all active:scale-95"
-                            >
+                            <button type="button" onClick={resetToDefault} className="flex items-center gap-2 px-6 py-3 font-bold text-red-400 border border-red-500/20 rounded-2xl hover:bg-red-500/10 transition-all active:scale-95">
                                 <RotateCcw size={18} /> Reset to Default
                             </button>
-
                             <div className="flex items-center gap-6">
                                 <button onClick={() => setIsModalOpen(false)} className="px-8 py-4 rounded-2xl font-bold text-gray-400 hover:text-white transition-all">Discard</button>
                                 <button form="serviceForm" type="submit" disabled={loading || fetching} className="bg-blue-600 hover:bg-blue-500 px-12 py-4 rounded-2xl font-black uppercase tracking-widest flex items-center gap-3 shadow-xl transition-all active:scale-95 disabled:opacity-50 text-white">

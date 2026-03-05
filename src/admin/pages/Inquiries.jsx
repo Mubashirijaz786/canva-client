@@ -45,13 +45,10 @@ const Inquiries = () => {
 
     const handleDelete = async (id, e) => {
         e.stopPropagation();
-        if(!window.confirm("Are you sure you want to delete this inquiry?")) return;
-        try {
+        {
             await axiosPrivate.delete(`/inquiries/${id}`);
             setMessages(messages.filter(msg => msg._id !== id));
             if (selectedMsg?._id === id) setSelectedMsg(null);
-        } catch (err) {
-            alert("Failed to delete message");
         }
     };
 

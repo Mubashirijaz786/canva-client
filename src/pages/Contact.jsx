@@ -253,6 +253,9 @@ const Contact = () => {
             <option value="Custom Software Development" className="bg-[#0f172a] text-white py-4">
                 Custom Software Development
             </option>
+            <option value="Content Writing" className="bg-[#0f172a] text-white py-4">
+                Content Writing
+            </option>
         </select>
         
         {}
