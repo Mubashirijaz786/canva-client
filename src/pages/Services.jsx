@@ -8,39 +8,39 @@ import ServiceLayout from '../components/services/ServiceLayout';
 import MetaData from '../components/common/MetaData';
 
 const Services = () => {
-    const [slugMap, setSlugMap] = useState({});
+  const [slugMap, setSlugMap] = useState({});
 
-    useEffect(() => {
-        const fetchDynamicSlugs = async () => {
-            try {
-                const res = await axiosPublic.get('/service-pages/all/slugs');
-                if (res.data && Array.isArray(res.data)) {
-                    const mapping = {};
-                    res.data.forEach(item => {
-                        // Ensure pageId match exactly with your servicesData.js 'id' or 'slug'
-                        mapping[item.pageId] = item.slug;
-                    });
-                    setSlugMap(mapping);
-                    
-                    // 🔍 DEBUG: Check these logs in Browser Inspect (F12)
-                    console.log("BACKEND SLUGS:", mapping);
-                    console.log("FRONTEND DATA IDs:", servicesData.map(s => s.id));
-                }
-            } catch (err) {
-                console.error("Error fetching service slugs:", err);
-            }
-        };
-        fetchDynamicSlugs();
-    }, []);
+  useEffect(() => {
+    const fetchDynamicSlugs = async () => {
+      try {
+        const res = await axiosPublic.get('/service-pages/all/slugs');
+        if (res.data && Array.isArray(res.data)) {
+          const mapping = {};
+          res.data.forEach((item) => {
 
-    return (
-        <ServiceLayout>
-            <MetaData 
-                pageName="services"
-                title="Services – Canva Solutions" 
-                description="Explore our full range of digital services."
-                keywords="web development, SEO, graphic design"
-            />
+            mapping[item.pageId] = item.slug;
+          });
+          setSlugMap(mapping);
+
+
+          console.log("BACKEND SLUGS:", mapping);
+          console.log("FRONTEND DATA IDs:", servicesData.map((s) => s.id));
+        }
+      } catch (err) {
+        console.error("Error fetching service slugs:", err);
+      }
+    };
+    fetchDynamicSlugs();
+  }, []);
+
+  return (
+    <ServiceLayout>
+            <MetaData
+        pageName="services"
+        title="Services – Canva Solutions"
+        description="Explore our full range of digital services."
+        keywords="web development, SEO, graphic design" />
+      
 
             <main id="main-content">
                 <section className="relative pt-20 pb-32 px-6 lg:px-16 overflow-hidden text-white">
@@ -53,6 +53,9 @@ const Services = () => {
                             World-Class Digital <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400">Services & Solutions</span>
                         </h1>
+                        <p class="text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed"> 
+From code to content, we provide the full spectrum of digital services to help your business scale effortlessly.
+                        </p>
                     </div>
                 </section>
 
@@ -61,21 +64,21 @@ const Services = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             
                             {servicesData.map((service) => {
-                                // ⚠️ IMPORTANT: service.id MUST match Backend's pageId (e.g. "seo")
-                                // Agar aapke servicesData mein 'id' numeric hai, toh aapko wahan 
-                                // 'id' ko badal kar Backend wala pageId rakhna parega.
-                                
-                                const dynamicSlug = slugMap[service.id]; 
-                                const finalPath = dynamicSlug 
-                                    ? `/services/${dynamicSlug}` 
-                                    : service.link; // Fallback to original hardcoded link
 
-                                return (
-                                    <Link 
-                                        key={service.id} 
-                                        to={finalPath} 
-                                        className="group relative p-10 bg-white/5 border border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col min-h-[420px] transition-all duration-500 hover:bg-white/10 hover:border-blue-500/30 hover:-translate-y-2 hover:shadow-2xl"
-                                    >
+
+
+
+                const dynamicSlug = slugMap[service.id];
+                const finalPath = dynamicSlug ?
+                `/services/${dynamicSlug}` :
+                service.link;
+
+                return (
+                  <Link
+                    key={service.id}
+                    to={finalPath}
+                    className="group relative p-10 bg-white/5 border border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col min-h-[420px] transition-all duration-500 hover:bg-white/10 hover:border-blue-500/30 hover:-translate-y-2 hover:shadow-2xl">
+                    
                                         <div className={`absolute inset-0 bg-gradient-to-br from-${service.color}-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                                         
                                         <div className="relative z-10 flex flex-col h-full">
@@ -94,15 +97,15 @@ const Services = () => {
                                                 Learn More <ArrowRight size={18} className="ml-2" />
                                             </div>
                                         </div>
-                                    </Link>
-                                );
-                            })}
+                                    </Link>);
+
+              })}
                         </div>
                     </div>
                 </section>
             </main>
-        </ServiceLayout>
-    );
+        </ServiceLayout>);
+
 };
 
 export default Services;

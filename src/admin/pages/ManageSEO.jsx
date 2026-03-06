@@ -3,153 +3,153 @@ import { axiosPrivate, axiosPublic } from '../../api/axios';
 import { Save, Loader2, Globe, Share2, Upload, Image as ImageIcon } from 'lucide-react';
 
 
-import SitemapGenerator from './SitemapGenerator'; 
+import SitemapGenerator from './SitemapGenerator';
 
 const ManageSEO = () => {
-    const pages = [
-        { id: 'home', label: 'Home Page' },
-        { id: 'about', label: 'About Page' },
-        { id: 'services', label: 'Services Page' },
-        { id: 'portfolio', label: 'Portfolio Page' },
-        { id: 'contact', label: 'Contact Page' },
-        { id: 'blogs', label: 'Blogs Main Page' }
-    ];
+  const pages = [
+  { id: 'home', label: 'Home Page' },
+  { id: 'about', label: 'About Page' },
+  { id: 'services', label: 'Services Page' },
+  { id: 'portfolio', label: 'Portfolio Page' },
+  { id: 'contact', label: 'Contact Page' },
+  { id: 'blogs', label: 'Blogs Main Page' }];
 
-    const [selectedPage, setSelectedPage] = useState('home');
-    const [formData, setFormData] = useState({
-        metaTitle: '', metaDescription: '', metaKeywords: '',
-        ogTitle: '', ogDescription: '', ogImage: ''
-    });
-    const [newImage, setNewImage] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [fetching, setFetching] = useState(false);
 
-    useEffect(() => {
-        const fetchSEO = async () => {
-            setFetching(true);
-            try {
-                const res = await axiosPublic.get(`/seo/${selectedPage}`);
-                setFormData(res.data || {});
-                setNewImage(null);
-            } catch (err) { console.error(err); }
-            finally { setFetching(false); }
-        };
-        fetchSEO();
-    }, [selectedPage]);
+  const [selectedPage, setSelectedPage] = useState('home');
+  const [formData, setFormData] = useState({
+    metaTitle: '', metaDescription: '', metaKeywords: '',
+    ogTitle: '', ogDescription: '', ogImage: ''
+  });
+  const [newImage, setNewImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
 
-    const handleSave = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        const submitData = new FormData();
-        
-        submitData.append('pageName', selectedPage);
-        submitData.append('metaTitle', formData.metaTitle || '');
-        submitData.append('metaDescription', formData.metaDescription || '');
-        submitData.append('metaKeywords', formData.metaKeywords || '');
-        submitData.append('ogTitle', formData.ogTitle || '');
-        submitData.append('ogDescription', formData.ogDescription || '');
-
-        if (newImage) {
-            submitData.append('ogImage', newImage);
-        }
-
-        try {
-            await axiosPrivate.put('/seo', submitData);
-            alert("SEO Updated Successfully!");
-        } catch (err) { 
-            alert("Error updating SEO"); 
-        } finally { setLoading(false); }
+  useEffect(() => {
+    const fetchSEO = async () => {
+      setFetching(true);
+      try {
+        const res = await axiosPublic.get(`/seo/${selectedPage}`);
+        setFormData(res.data || {});
+        setNewImage(null);
+      } catch (err) {console.error(err);} finally
+      {setFetching(false);}
     };
+    fetchSEO();
+  }, [selectedPage]);
 
-    return (
-        <div className="min-h-screen text-white p-4 lg:p-8 font-['Manrope'] space-y-10">
+  const handleSave = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const submitData = new FormData();
+
+    submitData.append('pageName', selectedPage);
+    submitData.append('metaTitle', formData.metaTitle || '');
+    submitData.append('metaDescription', formData.metaDescription || '');
+    submitData.append('metaKeywords', formData.metaKeywords || '');
+    submitData.append('ogTitle', formData.ogTitle || '');
+    submitData.append('ogDescription', formData.ogDescription || '');
+
+    if (newImage) {
+      submitData.append('ogImage', newImage);
+    }
+
+    try {
+      await axiosPrivate.put('/seo', submitData);
+      alert("SEO Updated Successfully!");
+    } catch (err) {
+      alert("Error updating SEO");
+    } finally {setLoading(false);}
+  };
+
+  return (
+    <div className="min-h-screen text-white p-4 lg:p-8 font-['Manrope'] space-y-10">
             
-            {/* ✅ Section 1: Aapka Master Sitemap Generator Component */}
+            
             <SitemapGenerator />
 
-            {/* Section 2: Page Selector */}
+            
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#111827] p-6 rounded-3xl border border-white/5 shadow-2xl">
                 <div>
                     <h1 className="text-2xl font-black italic uppercase text-blue-400">Page SEO Settings</h1>
                     <p className="text-gray-500 text-xs mt-1">Individual page meta tags customize karein</p>
                 </div>
-                <select 
-                    value={selectedPage} 
-                    onChange={(e) => setSelectedPage(e.target.value)}
-                    className="bg-white/5 border border-white/10 p-3 px-6 rounded-xl outline-none text-blue-400 font-bold cursor-pointer hover:bg-white/10 transition-all shadow-inner"
-                >
-                    {pages.map(p => <option key={p.id} value={p.id} className="bg-[#111827]">{p.label}</option>)}
+                <select
+          value={selectedPage}
+          onChange={(e) => setSelectedPage(e.target.value)}
+          className="bg-white/5 border border-white/10 p-3 px-6 rounded-xl outline-none text-blue-400 font-bold cursor-pointer hover:bg-white/10 transition-all shadow-inner">
+          
+                    {pages.map((p) => <option key={p.id} value={p.id} className="bg-[#111827]">{p.label}</option>)}
                 </select>
             </div>
 
-            {/* Section 3: SEO Form */}
-            {fetching ? <div className="flex justify-center mt-20"><Loader2 className="animate-spin text-blue-500" size={40} /></div> : (
-                <form onSubmit={handleSave} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {fetching ? <div className="flex justify-center mt-20"><Loader2 className="animate-spin text-blue-500" size={40} /></div> :
+      <form onSubmit={handleSave} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     
-                    {/* Meta Section */}
+                    
                     <div className="space-y-6 bg-[#111827] p-8 rounded-[2.5rem] border border-white/10 shadow-2xl">
-                        <h3 className="flex items-center gap-2 text-lg font-bold text-gray-200"><Globe size={20} className="text-blue-500"/> Search Engine (Meta)</h3>
+                        <h3 className="flex items-center gap-2 text-lg font-bold text-gray-200"><Globe size={20} className="text-blue-500" /> Search Engine (Meta)</h3>
                         
                         <div className="space-y-2">
                             <label className="text-[10px] uppercase font-black text-gray-500 ml-2">Focus Title</label>
-                            <input type="text" placeholder="e.g. Best Web Agency" value={formData.metaTitle || ''} onChange={e => setFormData({...formData, metaTitle: e.target.value})} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500 transition-all" />
+                            <input type="text" placeholder="e.g. Best Web Agency" value={formData.metaTitle || ''} onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500 transition-all" />
                         </div>
 
                         <div className="space-y-2">
                             <label className="text-[10px] uppercase font-black text-gray-500 ml-2">Meta Description</label>
-                            <textarea placeholder="Write a summary..." value={formData.metaDescription || ''} onChange={e => setFormData({...formData, metaDescription: e.target.value})} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none h-32 resize-none focus:border-blue-500 transition-all" />
+                            <textarea placeholder="Write a summary..." value={formData.metaDescription || ''} onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none h-32 resize-none focus:border-blue-500 transition-all" />
                         </div>
 
                         <div className="space-y-2">
                             <label className="text-[10px] uppercase font-black text-gray-500 ml-2">Keywords</label>
-                            <input type="text" placeholder="web, design, seo..." value={formData.metaKeywords || ''} onChange={e => setFormData({...formData, metaKeywords: e.target.value})} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500" />
+                            <input type="text" placeholder="web, design, seo..." value={formData.metaKeywords || ''} onChange={(e) => setFormData({ ...formData, metaKeywords: e.target.value })} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500" />
                         </div>
                     </div>
 
-                    {/* Social Section */}
+                    
                     <div className="space-y-6 bg-[#111827] p-8 rounded-[2.5rem] border border-white/10 shadow-2xl flex flex-col">
-                        <h3 className="flex items-center gap-2 text-lg font-bold text-gray-200"><Share2 size={20} className="text-pink-500"/> Social Media (OG)</h3>
+                        <h3 className="flex items-center gap-2 text-lg font-bold text-gray-200"><Share2 size={20} className="text-pink-500" /> Social Media (OG)</h3>
                         
                         <div className="space-y-2">
                             <label className="text-[10px] uppercase font-black text-gray-500 ml-2">Social Title</label>
-                            <input type="text" placeholder="Facebook Title" value={formData.ogTitle || ''} onChange={e => setFormData({...formData, ogTitle: e.target.value})} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500 transition-all" />
+                            <input type="text" placeholder="Facebook Title" value={formData.ogTitle || ''} onChange={(e) => setFormData({ ...formData, ogTitle: e.target.value })} className="w-full bg-white/5 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500 transition-all" />
                         </div>
 
                         <div className="space-y-2 flex-grow">
                             <label className="text-[10px] uppercase font-black text-gray-500 ml-2">Social Preview Image</label>
                             <div className="relative group">
                                 <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-white/10 rounded-[2rem] bg-white/5 hover:bg-white/[0.08] hover:border-blue-500/50 transition-all cursor-pointer overflow-hidden">
-                                    {(newImage || formData.ogImage) ? (
-                                        <div className="relative w-full h-full">
-                                            <img 
-                                                src={newImage ? URL.createObjectURL(newImage) : formData.ogImage} 
-                                                className="w-full h-full object-cover opacity-60" 
-                                                alt="Preview" 
-                                            />
+                                    {newImage || formData.ogImage ?
+                <div className="relative w-full h-full">
+                                            <img
+                    src={newImage ? URL.createObjectURL(newImage) : formData.ogImage}
+                    className="w-full h-full object-cover opacity-60"
+                    alt="Preview" />
+                  
                                             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <Upload className="text-white mb-2" size={24} />
                                                 <span className="text-xs font-bold uppercase tracking-widest">Change Image</span>
                                             </div>
-                                        </div>
-                                    ) : (
-                                        <div className="flex flex-col items-center justify-center">
+                                        </div> :
+
+                <div className="flex flex-col items-center justify-center">
                                             <ImageIcon size={32} className="text-blue-500 mb-4" />
                                             <p className="text-sm text-gray-300 font-bold">Click to upload preview image</p>
                                         </div>
-                                    )}
-                                    <input type="file" className="hidden" onChange={e => setNewImage(e.target.files[0])} />
+                }
+                                    <input type="file" className="hidden" onChange={(e) => setNewImage(e.target.files[0])} />
                                 </label>
                             </div>
                         </div>
 
                         <button disabled={loading} className="w-full bg-blue-600 hover:bg-blue-500 py-5 rounded-2xl font-black uppercase tracking-widest text-xs flex justify-center items-center gap-2 transition-all active:scale-95 shadow-lg shadow-blue-500/20">
-                            {loading ? <Loader2 className="animate-spin" /> : <><Save size={18}/> Update Page SEO</>}
+                            {loading ? <Loader2 className="animate-spin" /> : <><Save size={18} /> Update Page SEO</>}
                         </button>
                     </div>
                 </form>
-            )}
-        </div>
-    );
+      }
+        </div>);
+
 };
 
 export default ManageSEO;

@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Facebook, Instagram, Linkedin, Loader2 } from 'lucide-react';
-import { axiosPublic } from '../../api/axios'; 
+import { axiosPublic } from '../../api/axios';
 
 
-const UpworkIcon = ({ size, className }) => (
-  <img 
-    src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/upwork.svg" 
-    alt="Upwork"
-    width={size} 
-    height={size}
-    className={className}
-    style={{ 
-      filter: "invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%)" 
-    }}
-  />
-);
+const UpworkIcon = ({ size, className }) =>
+<img
+  src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/upwork.svg"
+  alt="Upwork"
+  width={size}
+  height={size}
+  className={className}
+  style={{
+    filter: "invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%)"
+  }} />;
+
+
 
 const Sidebar = () => {
   const [settings, setSettings] = useState(null);
 
-  
+
   useEffect(() => {
     const fetchSettings = async () => {
       try {
@@ -32,48 +32,48 @@ const Sidebar = () => {
     fetchSettings();
   }, []);
 
-  
+
   if (!settings) return null;
 
-  
+
   const menuItems = [
-    { 
-      id: 3, 
-      label: "Facebook", 
-      icon: Facebook, 
-      link: settings.facebook 
-    },
-    { 
-      id: 4, 
-      label: "Instagram", 
-      icon: Instagram, 
-      link: settings.instagram 
-    },
-    { 
-      id: 5, 
-      label: "LinkedIn", 
-      icon: Linkedin, 
-      link: settings.linkedin 
-    },
-    { 
-      id: 6, 
-      label: "Upwork", 
-      icon: UpworkIcon, 
-      link: settings.upwork 
-    },
-  ].filter(item => item.link); 
+  {
+    id: 3,
+    label: "Facebook",
+    icon: Facebook,
+    link: settings.facebook
+  },
+  {
+    id: 4,
+    label: "Instagram",
+    icon: Instagram,
+    link: settings.instagram
+  },
+  {
+    id: 5,
+    label: "LinkedIn",
+    icon: Linkedin,
+    link: settings.linkedin
+  },
+  {
+    id: 6,
+    label: "Upwork",
+    icon: UpworkIcon,
+    link: settings.upwork
+  }].
+  filter((item) => item.link);
 
   return (
     <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 p-2 animate-in fade-in slide-in-from-right-4 duration-700">
-      {menuItems.map((item) => (
-        <a 
-          key={item.id}
-          href={item.link}
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="group relative flex items-center justify-end"
-        >
-          {}
+      {menuItems.map((item) =>
+      <a
+        key={item.id}
+        href={item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative flex items-center justify-end">
+        
+          
           <span className="
             absolute right-14 
             opacity-0 translate-x-4 
@@ -84,11 +84,12 @@ const Sidebar = () => {
             whitespace-nowrap
             z-0
           ">
+
             {item.label}
             <span className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-white rotate-45"></span>
           </span>
 
-          {}
+          
           <div className={`
             w-12 h-12 
             rounded-xl 
@@ -109,9 +110,9 @@ const Sidebar = () => {
             <item.icon size={22} className={item.label === "Upwork" ? "" : "stroke-[2px]"} />
           </div>
         </a>
-      ))}
-    </div>
-  );
+      )}
+    </div>);
+
 };
 
 export default Sidebar;

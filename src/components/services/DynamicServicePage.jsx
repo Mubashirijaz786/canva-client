@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { axiosPublic } from '../../api/axios';
 import { Loader2 } from 'lucide-react';
 
+
+import { servicesData } from '../../data/servicesData';
+
 import Ecommerce from './Ecommerce';
 import SEO from './SEO';
 import ContentWriting from './ContentWriting';
@@ -13,53 +16,69 @@ import WebDevelopment from './WebDevelopment';
 import CustomSoftware from './CustomSoftware';
 
 const DynamicServicePage = () => {
-    const { slug } = useParams();
-    const navigate = useNavigate();
-    const [pageData, setPageData] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const [pageData, setPageData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchPageData = async () => {
-            setLoading(true);
-            try {
-                const res = await axiosPublic.get(`/service-pages/slug/${slug}`);
-                if (res.data && Object.keys(res.data).length > 0) {
-                    setPageData(res.data);
-                } else {
-                    navigate('/services'); 
-                }
-            } catch (err) {
-                console.error("Error fetching service data:", err);
-                navigate('/services');
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchPageData();
-    }, [slug, navigate]);
+  useEffect(() => {
+    const fetchPageData = async () => {
+      setLoading(true);
+      try {
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-[#020617]">
-                <Loader2 className="animate-spin text-blue-500" size={48} />
-            </div>
-        );
-    }
+        const res = await axiosPublic.get(`/service-pages/slug/${slug}`);
 
-    const componentsMap = {
-        'e-commerce': Ecommerce,
-        'seo': SEO,
-        'content-writing': ContentWriting,
-        'graphic-design': GraphicDesign,
-        'social-media': SocialMedia,
-        'mobile-app': MobileApp,
-        'web-development': WebDevelopment,
-        'custom-software': CustomSoftware
+        if (res.data && res.data.pageId) {
+
+
+
+          if (res.data.slug && res.data.slug !== slug) {
+            return navigate(`/services/${res.data.slug}`, { replace: true });
+          }
+          setPageData(res.data);
+        } else {
+          handleFallback();
+        }
+      } catch (err) {
+        handleFallback();
+        console.warn("Using static fallback because API failed.");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const TargetComponent = componentsMap[pageData?.pageId] || WebDevelopment;
+    const handleFallback = () => {
+      const staticMatch = servicesData.find((s) => s.id === slug || s.link.includes(slug));
+      if (staticMatch) {
+        setPageData({
+          pageId: staticMatch.id,
+          heroTitle: staticMatch.title,
+          heroSubtitle: staticMatch.desc,
+          isStaticFallback: true
+        });
+      } else {
+        setPageData(null);
+      }
+    };
 
-    return <TargetComponent data={pageData} />;
+    fetchPageData();
+  }, [slug, navigate]);
+
+
+  const componentsMap = {
+    'e-commerce': Ecommerce,
+    'seo': SEO,
+    'content-writing': ContentWriting,
+    'graphic-design': GraphicDesign,
+    'social-media': SocialMedia,
+    'app-development': MobileApp,
+    'web-development': WebDevelopment,
+    'custom-software': CustomSoftware
+  };
+
+  const TargetComponent = componentsMap[pageData?.pageId] || WebDevelopment;
+
+  return <TargetComponent data={pageData} />;
 };
 
 export default DynamicServicePage;

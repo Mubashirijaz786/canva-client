@@ -62,13 +62,11 @@ const Hero = () => {
                                     <span className="text-xs sm:text-sm text-gray-200 font-medium uppercase">{heroData?.badgeText}</span>
                                 </div>
 
-                                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-[1.1] tracking-tight text-white drop-shadow-xl font-['Manrope']">
-                                    {heroData?.heading?.split('<br />').map((text, i) => (
-                                        <React.Fragment key={i}>{text} <br className="hidden sm:block" /></React.Fragment>
-                                    ))}
+                                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-[1.1] tracking-tight text-white drop-shadow-xl font-['Manrope'] whitespace-pre-line">
+                                    {heroData?.heading}
                                 </h1>
 
-                                <p className="text-sm sm:text-base text-gray-300 max-w-md leading-relaxed">
+                                <p className="text-sm sm:text-base text-gray-300 max-w-md leading-relaxed whitespace-pre-line">
                                     {heroData?.description}
                                 </p>
 
@@ -94,7 +92,7 @@ const Hero = () => {
 
                             <div className="flex h-full items-center justify-center lg:items-end lg:justify-end lg:pb-12 mt-4 lg:mt-0">
                                 <div className="bg-white/5 p-6 rounded-2xl border border-white/10 max-w-[320px] shadow-2xl backdrop-blur-xl transform hover:-translate-y-2 transition-transform duration-500">
-                                    <p className="text-gray-200 text-xs sm:text-sm mb-6 leading-relaxed text-center lg:text-left">
+                                    <p className="text-gray-200 text-xs sm:text-sm mb-6 leading-relaxed text-center lg:text-left whitespace-pre-line">
                                         {heroData?.statsText}
                                     </p>
                                     

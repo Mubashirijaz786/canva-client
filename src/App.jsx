@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { AdminAuthProvider } from './admin/context/AdminAuthContext'; 
+import { AdminAuthProvider } from './admin/context/AdminAuthContext';
 import PersistAdminLogin from './admin/layouts/PersistAdminLogin';
 import AdminProtectedRoute from './admin/layouts/AdminProtectedRoute';
 
@@ -39,17 +39,17 @@ const ManagePortfolioConfig = lazy(() => import('./admin/pages/ManagePortfolioCo
 
 const AdminLayout = lazy(() => import('./admin/layouts/AdminLayout'));
 
-// ✅ Dynamic Slug Handler Component
+
 const DynamicServicePage = lazy(() => import('./components/services/DynamicServicePage'));
 
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-screen bg-[#020617]">
+const LoadingSpinner = () =>
+<div className="flex items-center justify-center min-h-screen bg-[#020617]">
     <div className="flex flex-col items-center gap-4">
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       <p className="text-white/50 italic font-['Manrope']">Syncing...</p>
     </div>
-  </div>
-);
+  </div>;
+
 
 const App = () => {
   return (
@@ -61,11 +61,11 @@ const App = () => {
         
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            {/* PUBLIC ROUTES */}
+            
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             
-            {/* ✅ DYNAMIC SERVICE ROUTE (Replaces hardcoded ones) */}
+            
             <Route path="/services/:slug" element={<DynamicServicePage />} />
 
             <Route path="/portfolio" element={<Portfolio />} />
@@ -74,12 +74,12 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
 
-            {/* AUTH ROUTES */}
+            
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-            {/* PROTECTED ADMIN ROUTES */}
+            
             <Route element={<PersistAdminLogin />}> 
               <Route element={<AdminProtectedRoute />}> 
                 <Route path="/admin" element={<AdminLayout />}>
@@ -93,7 +93,7 @@ const App = () => {
                   <Route path="portfolio" element={<ManagePortfolio />} />
                   <Route path="about-page" element={<ManageAboutPage />} />
                   <Route path="messages" element={<Inquiries />} />
-                  <Route path="manage-faqs" element={<ManageFAQsPage/>} />
+                  <Route path="manage-faqs" element={<ManageFAQsPage />} />
                   <Route path="manage-choose-us" element={<ManageWhyChooseUs />} />
                   <Route path="manage-hero" element={<ManageHero />} />
                   <Route path="trusted-by" element={<ManageTrustedBy />} />
@@ -106,8 +106,8 @@ const App = () => {
           </Routes>
         </Suspense>
       </Router>
-    </AdminAuthProvider>
-  );
+    </AdminAuthProvider>);
+
 };
 
 export default App;
