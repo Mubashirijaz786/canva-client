@@ -10,13 +10,11 @@ import MetaData from '../../components/common/MetaData';
 import DynamicIcon from '../../components/common/DynamicIcon'; 
 import { useGlobalSettings } from '../../hooks/useGlobalSettings';
 
-
 import contentHero from '../../assets/images/Content-Writing.webp';
 
 const ContentWriting = () => {
     const { calendlyLink } = useGlobalSettings(); 
     const [pageData, setPageData] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     const defaults = PAGE_DEFAULTS['content-writing'];
 
@@ -25,17 +23,14 @@ const ContentWriting = () => {
             try {
                 const res = await axiosPublic.get('/service-pages/content-writing');
                 setPageData(res.data);
-            } catch (err) {
+            } catch {
                 console.log("Using default content: No dynamic data found.");
-            } finally {
-                setLoading(false);
             }
         };
         fetchPageContent();
         window.scrollTo(0, 0);
     }, []);
 
-    
     const d = (key, defaultValue = "") => pageData?.[key] || defaults?.[key] || defaultValue;
 
     return (
@@ -46,7 +41,6 @@ const ContentWriting = () => {
                 keywords={d('metaKeywords')}
             />
             
-            {}
             <section className="relative pt-24 pb-32 px-6 lg:px-16 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-cyan-600/5 blur-[150px] pointer-events-none"></div>
                 <div className="container mx-auto max-w-[1400px] relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -82,7 +76,6 @@ const ContentWriting = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-16 bg-[#0f172a] border-y border-white/5">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1400px]">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -102,7 +95,6 @@ const ContentWriting = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-32 px-6 lg:px-16">
                 <div className="container mx-auto max-w-[1400px]">
                     <div className="text-center mb-20">
@@ -123,7 +115,6 @@ const ContentWriting = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-24 bg-gradient-to-b from-[#020617] to-[#0f172a] relative overflow-hidden">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1200px] relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -166,7 +157,6 @@ const ContentWriting = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-24 px-6 lg:px-16 pb-32">
                 <div className="container mx-auto max-w-[1000px]">
                     <h2 className="text-3xl font-bold text-white mb-12 text-center">Frequently Asked Questions</h2>

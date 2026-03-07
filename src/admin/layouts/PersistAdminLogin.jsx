@@ -21,8 +21,7 @@ const PersistAdminLogin = () => {
                         email: response.data.email
                     });
                 }
-            } catch (err) {
-                console.error("Session expired.");
+            } catch {
                 if (isMounted) setAdminAuth(null);
             } finally {
                 if (isMounted) setIsLoading(false);
@@ -36,10 +35,9 @@ const PersistAdminLogin = () => {
         }
 
         return () => { isMounted = false; };
-    }, []);
+    }, [adminAuth?.accessToken, setAdminAuth, setIsLoading]);
 
     return <Outlet />;
 };
-
 
 export default PersistAdminLogin;

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
+import { useGlobalSettings } from '../../hooks/useGlobalSettings';
 import logo from '../../assets/images/logo.webp';
 import PrimaryButton from '../common/PrimaryButton';
 import ServicesDropdown from './ServicesDropdown';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const calendlyLink = "https://calendly.com/canvasolutions-info/";
+    const { calendlyLink } = useGlobalSettings();
 
   return (
     <nav className="relative z-50 mb-8 lg:mb-16 w-full px-2 sm:px-0">

@@ -16,14 +16,13 @@ const MetaData = ({ pageName, title: defaultTitle, description: defaultDescripti
                 if (res.data && res.data.metaTitle) {
                     setSeo(res.data);
                 }
-            } catch (err) {
-                console.error("SEO Fetch Error:", err);
+            } catch {
+                // Silently handle error
             }
         };
         fetchSEO();
     }, [pageName]);
 
-    
     const title = seo?.metaTitle || defaultTitle;
     const description = seo?.metaDescription || defaultDescription;
     const keywords = seo?.metaKeywords || defaultKeywords;
@@ -36,14 +35,12 @@ const MetaData = ({ pageName, title: defaultTitle, description: defaultDescripti
             <meta name="keywords" content={keywords} />
             <link rel="canonical" href={currentUrl} />
 
-            {}
             <meta property="og:title" content={seo?.ogTitle || title} />
             <meta property="og:description" content={seo?.ogDescription || description} />
             <meta property="og:url" content={currentUrl} />
             <meta property="og:type" content="website" />
             <meta property="og:image" content={image} />
 
-            {}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={seo?.ogTitle || title} />
             <meta name="twitter:description" content={seo?.ogDescription || description} />

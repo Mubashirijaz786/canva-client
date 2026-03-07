@@ -34,7 +34,7 @@ const DynamicServicePage = () => {
         } else {
           handleFallback();
         }
-      } catch (err) {
+      } catch {
         handleFallback();
         console.warn("Using static fallback because API failed.");
       } finally {
@@ -59,7 +59,6 @@ const DynamicServicePage = () => {
     fetchPageData();
   }, [slug, navigate]);
 
-
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#020617]">
@@ -68,11 +67,10 @@ const DynamicServicePage = () => {
     );
   }
 
- 
   if (!pageData) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#020617] text-white">
-        <h1 className="text-2xl font-bold">Service Not Found</h1>
+        <h1 className="text-2xl font-bold font-['Manrope'] italic">Service Not Found</h1>
       </div>
     );
   }
@@ -88,10 +86,8 @@ const DynamicServicePage = () => {
     'custom-software': CustomSoftware
   };
 
- 
   const TargetComponent = componentsMap[pageData.pageId];
 
-  
   if (!TargetComponent) {
      return <WebDevelopment data={pageData} />;
   }

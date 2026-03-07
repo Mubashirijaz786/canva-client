@@ -17,11 +17,10 @@ const ManageReviews = () => {
     const fetchReviews = async () => {
         try {
             const res = await axiosPublic.get('/reviews');
-            
             setReviews(res.data.reviews || []);
             setBrandingImage(res.data.brandingImage || "");
-        } catch (err) { 
-            console.error("Error fetching reviews:", err); 
+        } catch { 
+            alert("Error fetching reviews"); 
         }
     };
 
@@ -29,7 +28,7 @@ const ManageReviews = () => {
         try {
             await axiosPrivate.put(`/reviews/${id}`, { isFeatured: true });
             fetchReviews();
-        } catch (err) { 
+        } catch { 
             alert("Error setting hero text"); 
         }
     };
@@ -40,11 +39,10 @@ const ManageReviews = () => {
         data.append('image', file);
         setLoading(true);
         try {
-            
             await axiosPrivate.put('/reviews/branding-image', data);
             fetchReviews();
-        } catch (err) { 
-            alert("Upload failed. Check if server route is correct."); 
+        } catch { 
+            alert("Upload failed"); 
         } finally { 
             setLoading(false); 
         }
@@ -60,7 +58,7 @@ const ManageReviews = () => {
             }
             setIsFormOpen(false);
             fetchReviews();
-        } catch (err) { 
+        } catch { 
             alert("Error saving review"); 
         } finally { 
             setLoading(false); 
@@ -68,11 +66,11 @@ const ManageReviews = () => {
     };
 
     const handleDelete = async (id) => {
-        if (window.confirm("Are you sure you want to delete this review?")) {
+        if (window.confirm("Are you sure?")) {
             try {
                 await axiosPrivate.delete(`/reviews/${id}`);
                 fetchReviews();
-            } catch (err) { 
+            } catch { 
                 alert("Error deleting review"); 
             }
         }
@@ -80,8 +78,6 @@ const ManageReviews = () => {
 
     return (
         <div className="min-h-screen text-white font-['Manrope'] pb-20 px-4">
-            
-            {}
             <div className="flex flex-col md:flex-row items-center justify-between bg-[#111827] border border-white/10 rounded-[2.5rem] p-8 mb-12 gap-6 shadow-2xl">
                 <div className="flex items-center gap-6">
                     <div className="w-24 h-24 rounded-2xl overflow-hidden bg-black/40 border border-white/10 relative group cursor-pointer shadow-xl">
@@ -107,7 +103,6 @@ const ManageReviews = () => {
                     </div>
                     <div>
                         <h2 className="text-xl font-bold uppercase tracking-tight italic text-blue-400">Section Branding Image</h2>
-                        
                     </div>
                 </div>
 
@@ -137,13 +132,16 @@ const ManageReviews = () => {
                 </div>
             )}
             
-            <ReviewForm 
-                isOpen={isFormOpen} 
-                onClose={() => setIsFormOpen(false)} 
-                onSubmit={handleFormSubmit} 
-                loading={loading} 
-                initialData={currentReview} 
-            />
+            {isFormOpen && (
+                <ReviewForm 
+                    key={currentReview ? currentReview._id : 'new-review'} 
+                    isOpen={isFormOpen} 
+                    onClose={() => setIsFormOpen(false)} 
+                    onSubmit={handleFormSubmit} 
+                    loading={loading} 
+                    initialData={currentReview} 
+                />
+            )}
         </div>
     );
 };

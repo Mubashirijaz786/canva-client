@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, Star, Loader2 } from 'lucide-react';
 
 const ReviewForm = ({ isOpen, onClose, onSubmit, loading, initialData }) => {
-    const [formData, setFormData] = useState({ author: '', role: '', quote: '', rating: 5 });
+    const [formData, setFormData] = useState({
+        author: initialData?.author || '',
+        role: initialData?.role || '',
+        quote: initialData?.quote || '',
+        rating: initialData?.rating || 5
+    });
+    
     const [hoverRating, setHoverRating] = useState(0);
-
-    useEffect(() => {
-        if (initialData) {
-            setFormData({
-                author: initialData.author || '',
-                role: initialData.role || '',
-                quote: initialData.quote || '',
-                rating: initialData.rating || 5
-            });
-        } else {
-            setFormData({ author: '', role: '', quote: '', rating: 5 });
-        }
-    }, [initialData, isOpen]);
 
     if (!isOpen) return null;
 

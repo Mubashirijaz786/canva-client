@@ -19,7 +19,9 @@ const ManageWhyChooseUs = () => {
             const res = await axiosPublic.get('/whychooseus');
             setFeatures(res.data.cards || []); 
             setMainImage(res.data.mainImage || "");
-        } catch (err) { console.error(err); }
+        } catch { 
+            console.error("Failed to fetch section data."); 
+        }
     };
 
     const handleImageUpload = async (file) => {
@@ -28,12 +30,14 @@ const ManageWhyChooseUs = () => {
         data.append('image', file);
         setLoading(true);
         try {
-            
             await axiosPrivate.put('/whychooseus/image', data);
             fetchData();
             alert("Main image updated!");
-        } catch (err) { alert("Upload failed"); }
-        finally { setLoading(false); }
+        } catch { 
+            alert("Upload failed"); 
+        } finally { 
+            setLoading(false); 
+        }
     };
 
     const handleFormSubmit = async (formData) => {
@@ -43,8 +47,11 @@ const ManageWhyChooseUs = () => {
             else await axiosPrivate.post('/whychooseus/card', formData);
             setIsFormOpen(false);
             fetchData();
-        } catch (err) { alert("Error saving card"); }
-        finally { setLoading(false); }
+        } catch { 
+            alert("Error saving card"); 
+        } finally { 
+            setLoading(false); 
+        }
     };
 
     const handleDelete = async (id) => {
@@ -52,7 +59,9 @@ const ManageWhyChooseUs = () => {
             try {
                 await axiosPrivate.delete(`/whychooseus/card/${id}`);
                 fetchData();
-            } catch (err) { alert("Error deleting"); }
+            } catch { 
+                alert("Error deleting"); 
+            }
         }
     };
 
@@ -60,7 +69,6 @@ const ManageWhyChooseUs = () => {
         <div className="min-h-screen text-white font-['Manrope'] pb-20 px-4">
             <h1 className="text-3xl font-black italic mb-8 uppercase text-blue-500">Manage Section Content</h1>
 
-            {}
             <div className="flex flex-col md:flex-row items-center justify-between bg-[#111827] border border-white/10 rounded-[2.5rem] p-8 mb-12 gap-6 shadow-2xl">
                 <div className="flex items-center gap-6">
                     <div className="w-24 h-24 rounded-2xl overflow-hidden bg-black/40 border border-white/10 relative group cursor-pointer">
@@ -92,10 +100,8 @@ const ManageWhyChooseUs = () => {
                     <Plus size={20} />
                     {features.length >= 4 ? "Limit Reached (Max 4)" : "Add New Card"}
                 </button>
-
             </div>
 
-            {}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {features.map(f => (
                     <WhyChooseUsCard
@@ -109,7 +115,16 @@ const ManageWhyChooseUs = () => {
 
             {loading && <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm"><Loader2 className="animate-spin text-blue-500" size={50} /></div>}
 
-            <WhyChooseUsForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} onSubmit={handleFormSubmit} loading={loading} initialData={currentFeature} />
+            {isFormOpen && (
+                <WhyChooseUsForm 
+                    key={currentFeature ? currentFeature._id : 'new-card'}
+                    isOpen={isFormOpen} 
+                    onClose={() => setIsFormOpen(false)} 
+                    onSubmit={handleFormSubmit} 
+                    loading={loading} 
+                    initialData={currentFeature} 
+                />
+            )}
         </div>
     );
 };

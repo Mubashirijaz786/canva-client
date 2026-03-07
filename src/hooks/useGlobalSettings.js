@@ -8,14 +8,21 @@ export const useGlobalSettings = () => {
   });
 
   useEffect(() => {
-    axiosPublic.get('/settings').then((res) => {
-      if (res.data) {
-        setSettings({
-          calendlyLink: res.data.calendlyLink || settings.calendlyLink,
-          whatsappNumber: res.data.whatsappNumber || settings.whatsappNumber
-        });
+    const fetchSettings = async () => {
+      try {
+        const res = await axiosPublic.get('/settings');
+        if (res.data) {
+          setSettings(prev => ({
+            calendlyLink: res.data.calendlyLink || prev.calendlyLink,
+            whatsappNumber: res.data.whatsappNumber || prev.whatsappNumber
+          }));
+        }
+      } catch {
+        console.log("Using fallback settings");
       }
-    }).catch(() => console.log("Using fallback settings"));
+    };
+
+    fetchSettings();
   }, []);
 
   return settings;

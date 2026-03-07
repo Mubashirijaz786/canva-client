@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { UserPlus, Mail, Lock, User, Loader2, CheckCircle, ShieldAlert, ArrowRight, ArrowLeft, KeyRound, Trash2, Users, ShieldCheck } from 'lucide-react';
+import { UserPlus, Mail, Lock, User, Loader2, CheckCircle, ShieldAlert, Trash2, ShieldCheck } from 'lucide-react';
 import { axiosPrivate } from '../../api/axios';
 
 const AddAdmin = () => {
@@ -13,33 +13,34 @@ const AddAdmin = () => {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        if (view === 'list') fetchAdmins();
-    }, [view]);
-
-    const fetchAdmins = async () => {
-        setLoading(true);
-        try {
-            const res = await axiosPrivate.get('/auth/admins');
-            setAdmins(res.data);
-        } catch (err) {
-            setError("Failed to fetch admins");
-        } finally {
-            setLoading(false);
+        if (view === 'list') {
+            const fetchAdmins = async () => {
+                setLoading(true);
+                try {
+                    const res = await axiosPrivate.get('/auth/admins');
+                    setAdmins(res.data);
+                } catch {
+                    setError("Failed to fetch admins");
+                } finally {
+                    setLoading(false);
+                }
+            };
+            fetchAdmins();
         }
-    };
+    }, [view]);
 
     const handleRemoveAdmin = async (id) => {
         if (!window.confirm("Are you sure you want to remove this admin?")) return;
         try {
             await axiosPrivate.delete(`/auth/admin/${id}`);
-            fetchAdmins();
+            const res = await axiosPrivate.get('/auth/admins');
+            setAdmins(res.data);
             alert("Admin removed successfully");
         } catch (err) {
             alert(err.response?.data?.message || "Delete failed");
         }
     };
 
-    
     const handleSendOTP = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -64,7 +65,10 @@ const AddAdmin = () => {
             setOtpSent(false);
             setFormData({ name: '', email: '', password: '' });
             setOtp('');
-            setTimeout(() => { setSuccess(false); setView('list'); }, 2000);
+            setTimeout(() => { 
+                setSuccess(false); 
+                setView('list'); 
+            }, 2000);
         } catch (err) {
             setError(err.response?.data?.message || "Invalid or expired OTP.");
         } finally {
@@ -74,7 +78,6 @@ const AddAdmin = () => {
 
     return (
         <div className="max-w-5xl mx-auto font-['Manrope'] animate-in fade-in duration-500 pb-20">
-            {}
             <div className="flex justify-between items-end mb-10">
                 <div>
                     <h1 className="text-4xl font-black text-white tracking-tight italic">Admin Control</h1>
@@ -104,9 +107,8 @@ const AddAdmin = () => {
             )}
 
             {view === 'list' ? (
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {loading ? <Loader2 className="animate-spin text-blue-500 mx-auto col-span-2" /> : (
+                    {loading ? <div className="col-span-2 flex justify-center py-10"><Loader2 className="animate-spin text-blue-500" /></div> : (
                         admins.map(admin => (
                             <div key={admin._id} className="p-6 bg-white/[0.03] border border-white/10 rounded-[2rem] flex items-center justify-between group hover:border-blue-500/30 transition-all">
                                 <div className="flex items-center gap-4">
@@ -134,7 +136,6 @@ const AddAdmin = () => {
                     )}
                 </div>
             ) : (
-                
                 <div className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-10 backdrop-blur-2xl relative overflow-hidden max-w-2xl mx-auto">
                     {success && (
                         <div className="mb-8 p-4 bg-green-500/10 border border-green-500/20 rounded-2xl text-green-400 flex items-center gap-3">

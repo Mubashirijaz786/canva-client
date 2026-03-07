@@ -21,7 +21,6 @@ const ManagePortfolio = () => {
 
     const handleFormSubmit = async (formData) => {
         setLoading(true);
-        
         const data = new FormData();
         data.append('title', formData.title);
         data.append('category', formData.category);
@@ -29,39 +28,34 @@ const ManagePortfolio = () => {
         data.append('link', formData.link);
         data.append('tags', JSON.stringify(formData.tags)); 
 
-        
         if (formData.imageFile) {
             data.append('image', formData.imageFile);
         } else {
-          
             data.append('imageUrl', formData.image);
         }
 
         try {
             if (currentProject) {
-                await axiosPrivate.put(`/projects/${currentProject._id}`, data, {
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                });
+                await axiosPrivate.put(`/projects/${currentProject._id}`, data);
             } else {
-                await axiosPrivate.post('/projects', data, {
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                });
+                await axiosPrivate.post('/projects', data);
             }
             setIsFormOpen(false);
             fetchProjects();
             alert("✅ Portfolio Updated Successfully!");
         } catch (err) { 
-            console.error(err.response?.data);
-            alert(err.response?.status === 401 ? "Session Expired! Please login again." : "Action failed: " + (err.response?.data?.message || "Error")); 
+            alert("Action failed: " + (err.response?.data?.message || "Error")); 
         } finally { setLoading(false); }
     };
 
     const handleDelete = async (id) => {
-        if (window.confirm("Are you sure you want to delete this project? This action cannot be undone.")) {
+        if (window.confirm("Are you sure?")) {
             try {
                 await axiosPrivate.delete(`/projects/${id}`);
                 fetchProjects();
-            } catch (err) { alert("Delete failed"); }
+            } catch {
+                alert("Delete failed");
+            }
         }
     };
 
@@ -85,13 +79,16 @@ const ManagePortfolio = () => {
                 onDelete={handleDelete} 
             />
 
-            <ProjectForm 
-                isOpen={isFormOpen} 
-                onClose={() => setIsFormOpen(false)} 
-                onSubmit={handleFormSubmit} 
-                loading={loading}
-                initialData={currentProject} 
-            />
+            {isFormOpen && (
+                <ProjectForm 
+                    key={currentProject ? currentProject._id : 'new-project'} 
+                    isOpen={isFormOpen} 
+                    onClose={() => setIsFormOpen(false)} 
+                    onSubmit={handleFormSubmit} 
+                    loading={loading}
+                    initialData={currentProject} 
+                />
+            )}
         </div>
     );
 };

@@ -10,13 +10,11 @@ import MetaData from '../common/MetaData';
 import DynamicIcon from '../common/DynamicIcon';
 import { useGlobalSettings } from '../../hooks/useGlobalSettings';
 
-
 import graphicHero from '../../assets/images/Graphic.webp';
 
 const GraphicDesign = () => {
     const { calendlyLink } = useGlobalSettings(); 
     const [pageData, setPageData] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     const defaults = PAGE_DEFAULTS['graphic-design'];
 
@@ -25,10 +23,8 @@ const GraphicDesign = () => {
             try {
                 const res = await axiosPublic.get('/service-pages/graphic-design');
                 setPageData(res.data);
-            } catch (err) {
+            } catch {
                 console.log("Using default content: No dynamic data found.");
-            } finally {
-                setLoading(false);
             }
         };
         fetchPageContent();
@@ -54,7 +50,6 @@ const GraphicDesign = () => {
                 keywords={d('metaKeywords')}
             />
             
-            {}
             <section className="relative pt-24 pb-32 px-6 lg:px-16 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-orange-600/5 blur-[150px] pointer-events-none"></div>
                 <div className="container mx-auto max-w-[1400px] relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -70,7 +65,6 @@ const GraphicDesign = () => {
                         <p className="text-gray-400 text-xl leading-relaxed mb-10 max-w-xl">{d('heroDescription')}</p>
                         
                         <div className="flex flex-wrap gap-4">
-                            {}
                             <a href={calendlyLink} target="_blank" rel="noopener noreferrer">
                                 <PrimaryButton className="!px-8 !py-4 text-lg">
                                     Start Your Design
@@ -83,7 +77,6 @@ const GraphicDesign = () => {
                             </Link>
                         </div>
                     </div>
-                    {}
                     <div className="relative group">
                         <div className="absolute -inset-4 bg-gradient-to-br from-orange-600/30 to-red-600/30 rounded-[2.5rem] blur-3xl opacity-50 group-hover:opacity-75 transition-opacity duration-1000"></div>
                         <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0f172a]">
@@ -100,7 +93,6 @@ const GraphicDesign = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-16 bg-[#0f172a] border-y border-white/5">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1400px]">
                     <p className="text-center text-gray-400 font-medium mb-8">CRAFTED WITH INDUSTRY STANDARD TOOLS</p>
@@ -115,7 +107,6 @@ const GraphicDesign = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-32 px-6 lg:px-16">
                 <div className="container mx-auto max-w-[1400px]">
                     <div className="text-center mb-20">
@@ -136,7 +127,6 @@ const GraphicDesign = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-24 bg-gradient-to-b from-[#020617] to-[#0f172a] relative overflow-hidden">
                 <div className="container mx-auto px-6 lg:px-16 max-w-[1200px] relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -170,7 +160,6 @@ const GraphicDesign = () => {
                                     ))}
                                 </ul>
                                 <div className="mt-10 pt-8 border-t border-white/10">
-                                    {}
                                     <a href={calendlyLink} target="_blank" rel="noopener noreferrer">
                                         <PrimaryButton className="w-full justify-center !py-4 text-lg">
                                             Elevate Your Brand
@@ -183,7 +172,6 @@ const GraphicDesign = () => {
                 </div>
             </section>
 
-            {}
             <section className="py-24 px-6 lg:px-16 pb-32">
                 <div className="container mx-auto max-w-[1000px]">
                     <h2 className="text-3xl font-bold text-white mb-12 text-center">Frequently Asked Questions</h2>

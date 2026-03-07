@@ -1,16 +1,12 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useContext } from "react";
 
-const AdminAuthContext = createContext({});
+// Sirf Context aur Hook export karein
+export const AdminAuthContext = createContext({});
 
-export const AdminAuthProvider = ({ children }) => {
-    const [adminAuth, setAdminAuth] = useState(null);
-    const [isLoading, setIsLoading] = useState(true); 
-
-    return (
-        <AdminAuthContext.Provider value={{ adminAuth, setAdminAuth, isLoading, setIsLoading }}>
-            {children}
-        </AdminAuthContext.Provider>
-    );
+export const useAdminAuth = () => {
+    const context = useContext(AdminAuthContext);
+    if (!context) {
+        throw new Error("useAdminAuth must be used within an AdminAuthProvider");
+    }
+    return context;
 };
-
-export const useAdminAuth = () => useContext(AdminAuthContext);

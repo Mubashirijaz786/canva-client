@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { AdminAuthProvider } from './admin/context/AdminAuthContext';
+import { AdminAuthProvider } from './admin/context/AdminAuthProvider';
 import PersistAdminLogin from './admin/layouts/PersistAdminLogin';
 import AdminProtectedRoute from './admin/layouts/AdminProtectedRoute';
 

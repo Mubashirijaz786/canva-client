@@ -1,6 +1,6 @@
 import axios from 'axios';
- const BASE_URL = 'https://canva-server-production.up.railway.app/api' ;
-// const BASE_URL = 'http://localhost:5000/api';
+
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 axios.defaults.withCredentials = true;
 
@@ -13,7 +13,6 @@ export const axiosPrivate = axios.create({
     baseURL: BASE_URL,
     withCredentials: true
 });
-
 
 axiosPrivate.interceptors.request.use(
     config => {
@@ -34,25 +33,20 @@ axiosPrivate.interceptors.response.use(
     async (error) => {
         const prevRequest = error?.config;
 
-       
         if ((error?.response?.status === 401 || error?.response?.status === 403) && !prevRequest?.sent) {
             prevRequest.sent = true;
             try {
-               
                 const response = await axiosPublic.get('/auth/refresh');
                 const newToken = response.data.accessToken;
 
-                
                 const auth = JSON.parse(localStorage.getItem('auth'));
                 localStorage.setItem('auth', JSON.stringify({ ...auth, accessToken: newToken }));
 
-                
                 prevRequest.headers['Authorization'] = `Bearer ${newToken}`;
                 return axiosPrivate(prevRequest);
-            } catch (refreshErr) {
+            } catch {
                 localStorage.removeItem('auth');
-               
-                return Promise.reject(refreshErr);
+                return Promise.reject(error);
             }
         }
         return Promise.reject(error);

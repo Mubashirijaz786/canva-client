@@ -7,7 +7,7 @@ import {
   MapPin, BarChart2, TrendingUp, FileText, Zap, Link2 } from
 'lucide-react';
 
-const ServiceForm = ({ formData, setFormData, onSubmit, loading }) => {
+const ServiceForm = ({ formData, setFormData, onSubmit}) => {
 
   const addContentItem = () => setFormData({
     ...formData,

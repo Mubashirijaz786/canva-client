@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { axiosPrivate } from '../../api/axios';
-import { Download, FileJson, Loader2, ShieldCheck } from 'lucide-react';
+import { Download, Loader2, ShieldCheck } from 'lucide-react';
 
 const SitemapGenerator = () => {
     const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ const SitemapGenerator = () => {
             document.body.appendChild(link);
             link.click();
             link.remove();
-        } catch (err) {
+        } catch {
             alert("Master generation failed. Check server logs.");
         } finally {
             setLoading(false);
@@ -38,10 +38,6 @@ const SitemapGenerator = () => {
                         <p className="text-blue-500 font-bold text-xs uppercase tracking-widest">Master XML Control Panel</p>
                     </div>
                 </div>
-
-                <p className="text-gray-400 max-w-xl mb-10 leading-relaxed">
-                    This button will generate a comprehensive sitemap.xml for the entire Canva Solutions website 
-                </p>
 
                 <button 
                     onClick={handleDownload}

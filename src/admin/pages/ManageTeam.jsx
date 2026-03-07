@@ -15,14 +15,17 @@ const ManageTeam = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [formData, setFormData] = useState({ name: '', role: '', image: '', linkedin: '', twitter: '' });
 
-    useEffect(() => { fetchTeam(); }, []);
-
-    const fetchTeam = async () => {
-        try {
-            const res = await axiosPublic.get('/team');
-            setMembers(res.data);
-        } catch (err) { console.error("Fetch error", err); }
-    };
+    useEffect(() => { 
+        const fetchTeam = async () => {
+            try {
+                const res = await axiosPublic.get('/team');
+                setMembers(res.data);
+            } catch { 
+                console.error("Failed to fetch team members."); 
+            }
+        };
+        fetchTeam(); 
+    }, []);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -57,31 +60,45 @@ const ManageTeam = () => {
             const data = new FormData();
             data.append('name', formData.name);
             data.append('role', formData.role);
-            if (uploadType === 'file' && selectedFile) data.append('image', selectedFile);
-            else data.append('imageUrl', formData.image);
+            
+            if (uploadType === 'file' && selectedFile) {
+                data.append('image', selectedFile);
+            } else {
+                data.append('imageUrl', formData.image);
+            }
 
-            if (editMode) await axiosPrivate.put(`/team/${editId}`, data);
-            else await axiosPrivate.post('/team', data);
+            if (editMode) {
+                await axiosPrivate.put(`/team/${editId}`, data);
+            } else {
+                await axiosPrivate.post('/team', data);
+            }
 
             resetForm();
-            fetchTeam();
-        } catch (err) { alert("Operation failed"); } 
-        finally { setLoading(false); }
+            const res = await axiosPublic.get('/team');
+            setMembers(res.data);
+        } catch { 
+            alert("Operation failed"); 
+        } finally { 
+            setLoading(false); 
+        }
     };
 
     const deleteMember = async (id) => {
         if (!window.confirm("Are you sure?")) return;
         try {
             await axiosPrivate.delete(`/team/${id}`);
-            fetchTeam();
-        } catch (err) { alert("Delete failed"); }
+            const res = await axiosPublic.get('/team');
+            setMembers(res.data);
+        } catch { 
+            alert("Delete failed"); 
+        }
     };
 
     return (
-        <div className="space-y-8 p-2 animate-in fade-in duration-700">
+        <div className="space-y-8 p-2 animate-in fade-in duration-700 font-['Manrope']">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-black italic tracking-tight text-white">Manage Team</h1>
+                    <h1 className="text-3xl font-black italic tracking-tight text-white uppercase text-blue-500">Manage Team</h1>
                     <p className="text-gray-500 text-sm font-medium">Add, Edit or Remove agency members.</p>
                 </div>
                 <button 
@@ -96,7 +113,7 @@ const ManageTeam = () => {
 
             {isModalOpen && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300" onClick={resetForm} />
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => !loading && resetForm()} />
                     <div className="relative w-full max-w-xl">
                         <TeamForm 
                             formData={formData} setFormData={setFormData}
