@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { axiosPublic } from '../../api/axios';
 import { Loader2 } from 'lucide-react';
 
-
 import { servicesData } from '../../data/servicesData';
 
 import Ecommerce from './Ecommerce';
@@ -25,13 +24,9 @@ const DynamicServicePage = () => {
     const fetchPageData = async () => {
       setLoading(true);
       try {
-
         const res = await axiosPublic.get(`/service-pages/slug/${slug}`);
 
         if (res.data && res.data.pageId) {
-
-
-
           if (res.data.slug && res.data.slug !== slug) {
             return navigate(`/services/${res.data.slug}`, { replace: true });
           }
@@ -65,6 +60,23 @@ const DynamicServicePage = () => {
   }, [slug, navigate]);
 
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#020617]">
+        <Loader2 className="animate-spin text-blue-500" size={48} />
+      </div>
+    );
+  }
+
+ 
+  if (!pageData) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#020617] text-white">
+        <h1 className="text-2xl font-bold">Service Not Found</h1>
+      </div>
+    );
+  }
+
   const componentsMap = {
     'e-commerce': Ecommerce,
     'seo': SEO,
@@ -76,7 +88,13 @@ const DynamicServicePage = () => {
     'custom-software': CustomSoftware
   };
 
-  const TargetComponent = componentsMap[pageData?.pageId] || WebDevelopment;
+ 
+  const TargetComponent = componentsMap[pageData.pageId];
+
+  
+  if (!TargetComponent) {
+     return <WebDevelopment data={pageData} />;
+  }
 
   return <TargetComponent data={pageData} />;
 };
